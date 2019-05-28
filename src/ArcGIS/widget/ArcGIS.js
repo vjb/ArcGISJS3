@@ -40,14 +40,29 @@ define([
             logger.debug(this.id + ".postCreate");
 
             // Load a sample base map
-            require(ArcGIS_Dojo_Loader_Config, ["esri/map"], function (Map) {
-                var map = new Map("map", {
-                    center: [-118, 34.5],
-                    zoom: 8,
-                    basemap: "topo"
-                });
-            });
+            require(ArcGIS_Dojo_Loader_Config, ["esri/map",
+                "esri/urlUtils",
+                "esri/arcgis/utils",
+                "esri/dijit/Legend",
+                "esri/dijit/Scalebar"
+            ], function (Map,
+                urlUtils,
+                arcgisUtils,
+                Legend,
+                Scalebar) {
 
+                arcgisUtils.createMap("4abe6a830b8f466dacf8abfde567a781", "map").then(function (response) {
+                   
+                    var map = response.map;
+
+                    //add the scalebar
+                    var scalebar = new Scalebar({
+                        map: map,
+                        scalebarUnit: "english"
+                    });
+                });
+
+            })
         },
 
         update: function (obj, callback) {
