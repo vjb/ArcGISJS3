@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Mendix</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css?{{cachebust}}">
+    <link rel="stylesheet" href="mxclientsystem/mxui/ui/mxui.css?{{cachebust}}">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.28/esri/css/esri.css">
+
+
+    {{themecss}}
+
+    <!-- ICONS EXAMPLE -->
+
+    <!-- iPhone retina icon (iOS < 7) -->
+    <!-- <link href="resources/ios/icons/apple-touch-icon-precomposed-114x114.png" sizes="114x114" rel="apple-touch-icon-precomposed"> -->
+
+    <!-- STARTUP IMAGES -->
+    <!-- <link href="resources/ios/startup/apple-touch-startup-image-1496x2048.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" rel="apple-touch-startup-image"> -->
+
+</head>
+
+<body height=100%; dir="ltr">
+    <div id="content"></div>
+    <script>
+        dojoConfig = {
+            has: {
+                "esri-featurelayer-webgl": 1
+            },
+            baseUrl: "mxclientsystem/dojo/",
+            cacheBust: "{{cachebust}}",
+            rtlRedirect: "index-rtl.html",
+            /*paths: {
+                'dojox': 'https://js.arcgis.com/3.28/dojox',
+                'esri': 'https://js.arcgis.com/3.28/esri',
+                'dojo': 'https://js.arcgis.com/3.28/dojo',
+                
+            }*/
+            paths: {
+                'dojox': 'https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/jsapi/jsapi/dojox',
+                'esri': 'https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/jsapi/jsapi/esri',
+                'dojo': 'https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/jsapi/jsapi/dojo',
+
+            },
+            async: true
+
+        };
+    </script>
+    <script>
+        if (!document.cookie || !document.cookie.match(/(^|;)originURI=/gi))
+            document.cookie = "originURI=/login.html";
+    </script>
+    <script src="mxclientsystem/mxui/mxui.js?{{cachebust}}"></script>
+    <script type="text/javascript" src="https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/jsapi/jsapi/">
+    </script>
+    <!-- <script src="https://js.arcgis.com/3.28/"></script> -->
+</body>
+
+</html>
