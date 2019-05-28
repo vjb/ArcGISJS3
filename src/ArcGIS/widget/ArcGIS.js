@@ -101,9 +101,6 @@ define([
                         });
                     }
 
-
-
-
                     // simple search
                     var search = new Search({
                         map: response.map,
@@ -159,18 +156,13 @@ define([
                     //Set the sources above to the search widget
                     search.set("sources", sources);
 
-
                     search.startup();
-
-
-
 
                     var basemapGallery = new BasemapGallery({
                         showArcGISBasemaps: true,
                         map: response.map,
                     }, "basemapGallery");
                     basemapGallery.startup();
-
 
                     // clickable legend
                     var myWidget = new LayerList({
@@ -189,7 +181,6 @@ define([
                     var toolbar = new Draw(response.map);
                     toolbar.on("draw-end", addToMap);
 
-
                     // wire up the buttons (NEEDS BETTER SELECTOR!)
                     document.querySelectorAll("#header button").forEach(function (d) {
                         d.addEventListener("click", activateTool);
@@ -202,23 +193,22 @@ define([
 
                     }
 
-
                     function addToMap(evt) {
                         var symbol;
                         toolbar.deactivate();
                         response.map.showZoomSlider();
 
                         switch (evt.geometry.type) {
-                            case "point":
-                            case "multipoint":
-                                symbol = new SimpleMarkerSymbol();
-                                break;
-                            case "polyline":
-                                symbol = new SimpleLineSymbol();
-                                break;
-                            default:
-                                symbol = new SimpleFillSymbol();
-                                break;
+                        case "point":
+                        case "multipoint":
+                            symbol = new SimpleMarkerSymbol();
+                            break;
+                        case "polyline":
+                            symbol = new SimpleLineSymbol();
+                            break;
+                        default:
+                            symbol = new SimpleFillSymbol();
+                            break;
                         }
                         var graphic = new Graphic(evt.geometry, symbol);
                         response.map.graphics.add(graphic);
