@@ -44,12 +44,16 @@ define([
                 "esri/urlUtils",
                 "esri/arcgis/utils",
                 "esri/dijit/Legend",
-                "esri/dijit/Scalebar"
+                "esri/dijit/Scalebar",
+                "dojo/text!esri/dijit/Search/templates/Search.html",
+                "esri/dijit/Search",
             ], function (Map,
                 urlUtils,
                 arcgisUtils,
                 Legend,
-                Scalebar) {
+                Scalebar,
+                SearchTemplate,
+                Search) {
 
                 // webmap for DSRA DP270
                 var mapid = "02ca94fa08e243eaa250d7268194b3cf";
@@ -66,6 +70,14 @@ define([
                         map: map,
                         scalebarUnit: "english"
                     });
+
+                    // simple search
+                    var search = new Search({
+                        map: response.map,
+                        showInfoWindowOnSelect: true,
+                        enableInfoWindow: true
+                    }, "search");
+                    search.startup();
                 });
 
             })
