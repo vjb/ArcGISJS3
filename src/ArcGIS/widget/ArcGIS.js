@@ -15,7 +15,8 @@ define([
     "dojo/html",
     "dojo/_base/event",
     "dojo/text!ArcGIS/widget/template/ArcGIS.html",
-    "ArcGIS/config/ArcGIS_Dojo_Loader_Config"
+    "ArcGIS/config/ArcGIS_Dojo_Loader_Config",
+
 ], function (declare, _WidgetBase, _TemplatedMixin, dom, dojoDom, dojoProp, dojoGeometry, dojoClass, dojoStyle, dojoConstruct, dojoArray, lang, dojoText, dojoHtml, dojoEvent, widgetTemplate, ArcGIS_Dojo_Loader_Config) {
     "use strict";
 
@@ -45,6 +46,8 @@ define([
                 "esri/dijit/Scalebar",
                 "dojo/text!esri/dijit/Search/templates/Search.html",
                 "esri/dijit/Search",
+                "esri/layers/FeatureLayer",
+                "esri/InfoTemplate",
                 "esri/dijit/BasemapGallery",
                 "esri/dijit/LayerList",
                 "esri/dijit/HomeButton",
@@ -53,7 +56,8 @@ define([
                 "esri/symbols/SimpleMarkerSymbol",
                 "esri/symbols/SimpleLineSymbol",
                 "esri/symbols/SimpleFillSymbol",
-                "dojo/parser"
+                "dojo/parser",
+                "ArcGIS/config/mapConfig"
             ], function (Map,
                 urlUtils,
                 arcgisUtils,
@@ -61,6 +65,8 @@ define([
                 Scalebar,
                 _SearchTemplate,
                 Search,
+                FeatureLayer,
+                InfoTemplate,
                 BasemapGallery,
                 LayerList,
                 HomeButton,
@@ -69,7 +75,8 @@ define([
                 SimpleMarkerSymbol,
                 SimpleLineSymbol,
                 SimpleFillSymbol,
-                parser
+                parser,
+                Map_Config
             ) {
 
                 //parser.parse();
@@ -95,21 +102,75 @@ define([
                     }
 
 
+
+
                     // simple search
                     var search = new Search({
                         map: response.map,
+                        enableButtonMode: false,
                         showInfoWindowOnSelect: true,
                         enableInfoWindow: true
                     }, "search");
+
+                    //Set the sources above to the search widget
+                    //search.set("sources", Map_Config["values"].searchConfig.sources);
+
+                    var sources = search.get("sources");
+                    sources.push({
+                        featureLayer: new FeatureLayer("https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/CongressionalDistricts/FeatureServer/0"),
+                        searchFields: ["DISTRICTID"],
+                        displayField: "DISTRICTID",
+                        exactMatch: false,
+                        outFields: ["DISTRICTID", "NAME", "PARTY"],
+                        name: "Congressional Districts",
+                        placeholder: "3708",
+                        maxResults: 6,
+                        maxSuggestions: 6,
+
+                        //Create an InfoTemplate and include three fields
+                        infoTemplate: new InfoTemplate("Congressional District",
+                            "District ID: ${DISTRICTID}</br>Name: ${NAME}</br>Party Affiliation: ${PARTY}"
+                        ),
+                        enableSuggestions: true,
+                        minCharacters: 0
+                    });
+
+                    sources.push({
+                        featureLayer: new FeatureLayer("https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/US_Senators/FeatureServer/0"),
+                        searchFields: ["Name"],
+                        displayField: "Name",
+                        exactMatch: false,
+                        name: "Senator",
+                        outFields: ["*"],
+                        placeholder: "Senator name",
+                        maxResults: 6,
+                        maxSuggestions: 6,
+
+                        //Create an InfoTemplate
+
+                        infoTemplate: new InfoTemplate("Senator information",
+                            "Name: ${Name}</br>State: ${State}</br>Party Affiliation: ${Party}</br>Phone No: ${Phone_Number}<br><a href=${Web_Page} target=_blank ;'>Website</a>"
+                        ),
+
+                        enableSuggestions: true,
+                        minCharacters: 0
+                    });
+
+                    //Set the sources above to the search widget
+                    search.set("sources", sources);
+
+
                     search.startup();
 
-                    
+
+
+
                     var basemapGallery = new BasemapGallery({
                         showArcGISBasemaps: true,
                         map: response.map,
                     }, "basemapGallery");
                     basemapGallery.startup();
-                    
+
 
                     // clickable legend
                     var myWidget = new LayerList({
@@ -138,7 +199,7 @@ define([
                         var tool = this.textContent.toUpperCase().replace(/ /g, "_");
                         toolbar.activate(Draw[tool]);
                         response.map.hideZoomSlider();
-                        
+
                     }
 
 
@@ -146,7 +207,7 @@ define([
                         var symbol;
                         toolbar.deactivate();
                         response.map.showZoomSlider();
-                       
+
                         switch (evt.geometry.type) {
                             case "point":
                             case "multipoint":
