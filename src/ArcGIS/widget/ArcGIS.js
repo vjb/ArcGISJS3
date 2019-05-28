@@ -47,20 +47,33 @@ define([
                 "esri/dijit/Search",
                 "esri/dijit/BasemapGallery",
                 "esri/dijit/LayerList",
-                "esri/dijit/HomeButton"
+                "esri/dijit/HomeButton",
+                "esri/toolbars/draw",
+                "esri/graphic",
+                "esri/symbols/SimpleMarkerSymbol",
+                "esri/symbols/SimpleLineSymbol",
+                "esri/symbols/SimpleFillSymbol",
+                "dojo/parser"
             ], function (Map,
                 urlUtils,
                 arcgisUtils,
                 Legend,
                 Scalebar,
-                SearchTemplate,
+                _SearchTemplate,
                 Search,
                 BasemapGallery,
                 LayerList,
-                HomeButton
-                ) {
+                HomeButton,
+                Draw,
+                Graphic,
+                SimpleMarkerSymbol,
+                SimpleLineSymbol,
+                SimpleFillSymbol,
+                parser
+            ) {
 
-                   
+                //parser.parse();
+
                 // webmap for DSRA DP270
                 var mapid = "02ca94fa08e243eaa250d7268194b3cf";
 
@@ -89,12 +102,13 @@ define([
                     search.startup();
 
                     /*
-                                        var basemapGallery = new BasemapGallery({
-                                            showArcGISBasemaps: true,
-                                            map: response.map,
-                                        }, "basemapGallery");
-                                        basemapGallery.startup();
+                    var basemapGallery = new BasemapGallery({
+                        showArcGISBasemaps: true,
+                        map: response.map,
+                    }, "basemapGallery");
+                    basemapGallery.startup();
                     */
+
                     // clickable legend
                     var myWidget = new LayerList({
                             map: response.map,
@@ -109,7 +123,40 @@ define([
                     }, "HomeButton");
                     home.startup();
 
+                    var toolbar = new Draw(response.map);
+                    toolbar.on("draw-end", addToMap);
 
+                    // wire up the buttons (NEEDS BETTER SELECTOR!)
+                    document.querySelectorAll("#header button").forEach(function (d) {
+                        d.addEventListener("click", activateTool);
+                    })
+
+                    function activateTool() {
+                        var tool = this.textContent.toUpperCase().replace(/ /g, "_");
+                        toolbar.activate(Draw[tool]);
+                        map.hideZoomSlider();
+                    }
+
+
+                    function addToMap(evt) {
+                        var symbol;
+                        toolbar.deactivate();
+                        response.map.showZoomSlider();
+                        switch (evt.geometry.type) {
+                            case "point":
+                            case "multipoint":
+                                symbol = new SimpleMarkerSymbol();
+                                break;
+                            case "polyline":
+                                symbol = new SimpleLineSymbol();
+                                break;
+                            default:
+                                symbol = new SimpleFillSymbol();
+                                break;
+                        }
+                        var graphic = new Graphic(evt.geometry, symbol);
+                        response.map.graphics.add(graphic);
+                    }
                 });
 
             })

@@ -13,7 +13,19 @@
 
   .widgetname #search {
     position: absolute;
-    bottom: 60px;
+    bottom: 90px;
     left: 20px;
     z-index: 50;
+  }
+
+  #mainWindow {
+    font-family: sans-serif; 
+    height: 100%; 
+    width: 100%; 
+  }
+
+  #header {
+    height: 80px; 
+    overflow: auto;
+    padding: 0.5em;
   }
