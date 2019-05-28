@@ -57,8 +57,10 @@ define([
                 Search,
                 BasemapGallery,
                 LayerList,
-                HomeButton) {
+                HomeButton
+                ) {
 
+                   
                 // webmap for DSRA DP270
                 var mapid = "02ca94fa08e243eaa250d7268194b3cf";
 
@@ -70,7 +72,7 @@ define([
                     var map = response.map;
 
                     //add the scalebar
-                    if (true) {
+                    if (false) {
                         var scalebar = new Scalebar({
                             map: map,
                             scalebarUnit: "english"
