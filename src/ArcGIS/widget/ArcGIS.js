@@ -51,8 +51,14 @@ define([
                 Legend,
                 Scalebar) {
 
-                arcgisUtils.createMap("4abe6a830b8f466dacf8abfde567a781", "map").then(function (response) {
-                   
+                // webmap for DSRA DP270
+                var mapid = "02ca94fa08e243eaa250d7268194b3cf";
+
+                // map is hosted on dsraenterprise2 NOT arcgis.com
+                arcgisUtils.arcgisUrl = "https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/sharing/content/items";
+
+                arcgisUtils.createMap(mapid, "map").then(function (response) {
+
                     var map = response.map;
 
                     //add the scalebar
