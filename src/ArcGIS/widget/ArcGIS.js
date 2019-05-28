@@ -46,6 +46,7 @@ define([
                 "dojo/text!esri/dijit/Search/templates/Search.html",
                 "esri/dijit/Search",
                 "esri/dijit/BasemapGallery",
+                "esri/dijit/LayerList",
             ], function (Map,
                 urlUtils,
                 arcgisUtils,
@@ -53,7 +54,8 @@ define([
                 Scalebar,
                 SearchTemplate,
                 Search,
-                BasemapGallery) {
+                BasemapGallery,
+                LayerList) {
 
                 // webmap for DSRA DP270
                 var mapid = "02ca94fa08e243eaa250d7268194b3cf";
@@ -66,10 +68,13 @@ define([
                     var map = response.map;
 
                     //add the scalebar
-                    var scalebar = new Scalebar({
-                        map: map,
-                        scalebarUnit: "english"
-                    });
+                    if (true) {
+                        var scalebar = new Scalebar({
+                            map: map,
+                            scalebarUnit: "english"
+                        });
+                    }
+
 
                     // simple search
                     var search = new Search({
@@ -79,12 +84,23 @@ define([
                     }, "search");
                     search.startup();
 
+
                     var basemapGallery = new BasemapGallery({
                         showArcGISBasemaps: true,
                         map: response.map,
                     }, "basemapGallery");
                     basemapGallery.startup();
-        
+
+                    // clickable legend
+                    var myWidget = new LayerList({
+                            map: response.map,
+                            layers: arcgisUtils.getLayerList(response)
+                        },
+                        "layerList"
+                    );
+                    myWidget.startup();
+
+
                 });
 
             })
