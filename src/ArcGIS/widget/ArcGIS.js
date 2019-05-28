@@ -23,8 +23,6 @@ define([
 
         templateString: widgetTemplate,
 
-
-
         widgetBase: null,
 
         // Internal variables.
@@ -47,13 +45,15 @@ define([
                 "esri/dijit/Scalebar",
                 "dojo/text!esri/dijit/Search/templates/Search.html",
                 "esri/dijit/Search",
+                "esri/dijit/BasemapGallery",
             ], function (Map,
                 urlUtils,
                 arcgisUtils,
                 Legend,
                 Scalebar,
                 SearchTemplate,
-                Search) {
+                Search,
+                BasemapGallery) {
 
                 // webmap for DSRA DP270
                 var mapid = "02ca94fa08e243eaa250d7268194b3cf";
@@ -78,6 +78,13 @@ define([
                         enableInfoWindow: true
                     }, "search");
                     search.startup();
+
+                    var basemapGallery = new BasemapGallery({
+                        showArcGISBasemaps: true,
+                        map: response.map,
+                    }, "basemapGallery");
+                    basemapGallery.startup();
+        
                 });
 
             })
