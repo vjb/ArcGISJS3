@@ -1,3 +1,19 @@
-.widgetname {
+.widgetname #HomeButton {
+    position: absolute;
+    top: 200px;
+    left: 20px;
+    z-index: 50;
+  }
 
-}
+ .widgetname #map {
+    padding:0;
+    margin:0;
+    height:100%;
+  }
+
+  .widgetname #search {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 50;
+  }

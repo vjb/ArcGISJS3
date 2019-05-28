@@ -47,6 +47,7 @@ define([
                 "esri/dijit/Search",
                 "esri/dijit/BasemapGallery",
                 "esri/dijit/LayerList",
+                "esri/dijit/HomeButton"
             ], function (Map,
                 urlUtils,
                 arcgisUtils,
@@ -55,7 +56,8 @@ define([
                 SearchTemplate,
                 Search,
                 BasemapGallery,
-                LayerList) {
+                LayerList,
+                HomeButton) {
 
                 // webmap for DSRA DP270
                 var mapid = "02ca94fa08e243eaa250d7268194b3cf";
@@ -84,13 +86,13 @@ define([
                     }, "search");
                     search.startup();
 
-
-                    var basemapGallery = new BasemapGallery({
-                        showArcGISBasemaps: true,
-                        map: response.map,
-                    }, "basemapGallery");
-                    basemapGallery.startup();
-
+                    /*
+                                        var basemapGallery = new BasemapGallery({
+                                            showArcGISBasemaps: true,
+                                            map: response.map,
+                                        }, "basemapGallery");
+                                        basemapGallery.startup();
+                    */
                     // clickable legend
                     var myWidget = new LayerList({
                             map: response.map,
@@ -99,6 +101,11 @@ define([
                         "layerList"
                     );
                     myWidget.startup();
+
+                    var home = new HomeButton({
+                        map: response.map
+                    }, "HomeButton");
+                    home.startup();
 
 
                 });
