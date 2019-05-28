@@ -9,13 +9,18 @@
     padding-top: 10px;
     margin:0;
     height:100%;
+    padding-bottom: 20px;
   }
 
   .widgetname #search {
     position: absolute;
-    bottom: 90px;
+    top: 420px;
     left: 20px;
-    z-index: 50;
+    z-index: 2;
+  }
+
+  .home {
+      margin-top:30px;
   }
 
   #mainWindow {

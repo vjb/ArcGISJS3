@@ -84,6 +84,8 @@ define([
 
                     var map = response.map;
 
+                    //map.hideZoomSlider();
+
                     //add the scalebar
                     if (false) {
                         var scalebar = new Scalebar({
@@ -101,13 +103,13 @@ define([
                     }, "search");
                     search.startup();
 
-                    /*
+                    
                     var basemapGallery = new BasemapGallery({
                         showArcGISBasemaps: true,
                         map: response.map,
                     }, "basemapGallery");
                     basemapGallery.startup();
-                    */
+                    
 
                     // clickable legend
                     var myWidget = new LayerList({
@@ -126,6 +128,7 @@ define([
                     var toolbar = new Draw(response.map);
                     toolbar.on("draw-end", addToMap);
 
+
                     // wire up the buttons (NEEDS BETTER SELECTOR!)
                     document.querySelectorAll("#header button").forEach(function (d) {
                         d.addEventListener("click", activateTool);
@@ -134,7 +137,8 @@ define([
                     function activateTool() {
                         var tool = this.textContent.toUpperCase().replace(/ /g, "_");
                         toolbar.activate(Draw[tool]);
-                        map.hideZoomSlider();
+                        response.map.hideZoomSlider();
+                        
                     }
 
 
@@ -142,6 +146,7 @@ define([
                         var symbol;
                         toolbar.deactivate();
                         response.map.showZoomSlider();
+                       
                         switch (evt.geometry.type) {
                             case "point":
                             case "multipoint":
