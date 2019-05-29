@@ -110,7 +110,7 @@ define([
                     // setup multi source search
                     var search = new Search({
                         map: response.map,
-                        enableButtonMode: false,
+                        enableButtonMode: true,
                         showInfoWindowOnSelect: true,
                         enableInfoWindow: true
                     }, "search");
@@ -137,6 +137,27 @@ define([
                         enableSuggestions: true,
                         minCharacters: 0
                     });
+
+                    sources.push({
+                        featureLayer: new FeatureLayer("https://dsraenterprise2.canadacentral.cloudapp.azure.com/server/rest/services/Hosted/FSA_AREA/FeatureServer/0"),
+                        "searchFields": ["fsa_name", "depot_code"],
+                        "displayField": "fsa_name",
+                        "exactMatch": true,
+                        outFields: ["fsa_name", "depot_code"],
+                        name: "FSA_AREA",
+                        placeholder: "Enter Search Criterion",
+                        maxResults: 6,
+                        maxSuggestions: 6, 
+
+                        //Create an InfoTemplate and include two fields
+                        infoTemplate: new InfoTemplate("FSA INFO",
+                            "FSA :  ${fsa_name}</br>Depot: ${depot_code}</br>"
+                        ),
+                        enableSuggestions: true,
+                        minCharacters: 0
+                    });
+
+
 
                     sources.push({
                         featureLayer: new FeatureLayer("https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/US_Senators/FeatureServer/0"),
