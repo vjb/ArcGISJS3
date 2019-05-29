@@ -56,6 +56,7 @@ define([
                 "esri/symbols/SimpleMarkerSymbol",
                 "esri/symbols/SimpleLineSymbol",
                 "esri/symbols/SimpleFillSymbol",
+                "esri/dijit/Measurement",
                 "dojo/parser",
                 "ArcGIS/config/mapConfig"
             ], function (Map,
@@ -75,6 +76,7 @@ define([
                 SimpleMarkerSymbol,
                 SimpleLineSymbol,
                 SimpleFillSymbol,
+                Measurement,
                 parser,
                 Map_Config
             ) {
@@ -101,7 +103,11 @@ define([
                         });
                     }
 
-                    // simple search
+                    var measurement = new Measurement({
+                        map: map
+                      }, "measurementDiv");
+                      measurement.startup();
+                    // setup multi source search
                     var search = new Search({
                         map: response.map,
                         enableButtonMode: false,
@@ -199,16 +205,16 @@ define([
                         response.map.showZoomSlider();
 
                         switch (evt.geometry.type) {
-                        case "point":
-                        case "multipoint":
-                            symbol = new SimpleMarkerSymbol();
-                            break;
-                        case "polyline":
-                            symbol = new SimpleLineSymbol();
-                            break;
-                        default:
-                            symbol = new SimpleFillSymbol();
-                            break;
+                            case "point":
+                            case "multipoint":
+                                symbol = new SimpleMarkerSymbol();
+                                break;
+                            case "polyline":
+                                symbol = new SimpleLineSymbol();
+                                break;
+                            default:
+                                symbol = new SimpleFillSymbol();
+                                break;
                         }
                         var graphic = new Graphic(evt.geometry, symbol);
                         response.map.graphics.add(graphic);
