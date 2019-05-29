@@ -12,6 +12,9 @@
     z-index: 50;
   }
 
+  #map_zoom_slider{
+    left: 5px;
+  }
  .widgetname #map {
     padding-top: 10px;
     margin:0;

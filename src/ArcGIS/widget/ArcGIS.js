@@ -85,10 +85,6 @@ define([
                 parser,
                 Map_Config) {
 
-                //parser.parse();
-
-                this.y = "hi there from first call";
-
                 // webmap for DSRA DP270
                 var mapid = "02ca94fa08e243eaa250d7268194b3cf";
 
@@ -100,12 +96,10 @@ define([
 
                         var map = response.map;
                         this._map = map;
-                        map.on("click", myClickHandler);
 
-                        function myClickHandler(evt) {
-                            debugger;
-                        }
-
+                        response.itemInfo.itemData.operationalLayers[0].layerObject.on("click", function (evt, l) {
+                            console.log(evt.graphic.attributes);
+                        });
 
                         this.set("loaded", true);
 
@@ -240,16 +234,16 @@ define([
                             response.map.showZoomSlider();
 
                             switch (evt.geometry.type) {
-                                case "point":
-                                case "multipoint":
-                                    symbol = new SimpleMarkerSymbol();
-                                    break;
-                                case "polyline":
-                                    symbol = new SimpleLineSymbol();
-                                    break;
-                                default:
-                                    symbol = new SimpleFillSymbol();
-                                    break;
+                            case "point":
+                            case "multipoint":
+                                symbol = new SimpleMarkerSymbol();
+                                break;
+                            case "polyline":
+                                symbol = new SimpleLineSymbol();
+                                break;
+                            default:
+                                symbol = new SimpleFillSymbol();
+                                break;
                             }
                             var graphic = new Graphic(evt.geometry, symbol);
                             response.map.graphics.add(graphic);
@@ -279,9 +273,9 @@ define([
 
             function showCoordinates(evt) {
                 //the map is in web mercator but display coordinates in geographic (lat, long)
-                require(ArcGIS_Dojo_Loader_Config, ["esri/geometry/webMercatorUtils"], dojo.hitch(this,function (webMercatorUtils) {
+                require(ArcGIS_Dojo_Loader_Config, ["esri/geometry/webMercatorUtils"], dojo.hitch(this, function (webMercatorUtils) {
                     var mp = webMercatorUtils.webMercatorToGeographic(evt.mapPoint);
-                    this._contextObj.set("MouseLat", mp.y.toFixed(4) );
+                    this._contextObj.set("MouseLat", mp.y.toFixed(4));
                     this._contextObj.set("MouseLon", mp.x.toFixed(4));
                 }));
                 //display mouse coordinates
@@ -312,7 +306,6 @@ define([
                         console.log(this._contextObj.get("ZoomToLat"));
                         this._map.panDown();
 
-
                         require(ArcGIS_Dojo_Loader_Config, ["esri/geometry/Point", "esri/SpatialReference"], dojo.hitch(this, function (Point, SpatialReference) {
                             var p = new Point(parseFloat(this._contextObj.get("ZoomToLon")), parseFloat(this._contextObj.get("ZoomToLat")), new SpatialReference({
                                 wkid: 4326
@@ -322,15 +315,12 @@ define([
                             //this._updateRendering();
                         }))
 
-
                     })
                 });
 
                 this._handles = [_objectHandle, ];
             }
         },
-
-
 
         resize: function (box) {
             logger.debug(this.id + ".resize");
