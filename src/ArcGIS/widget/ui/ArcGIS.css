@@ -5,6 +5,13 @@
     z-index: 50;
   }
 
+  .widgetname #LocateButton {
+    position: absolute;
+    top: 260px;
+    left: 20px;
+    z-index: 50;
+  }
+
  .widgetname #map {
     padding-top: 10px;
     margin:0;

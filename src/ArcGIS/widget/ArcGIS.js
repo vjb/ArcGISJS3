@@ -100,7 +100,12 @@ define([
 
                         var map = response.map;
                         this._map = map;
-                        this.z = "hi there from second call";
+                        map.on("click", myClickHandler);
+
+                        function myClickHandler(evt) {
+                            debugger;
+                        }
+
 
                         this.set("loaded", true);
 
@@ -268,6 +273,21 @@ define([
                 this._contextObj.set("CurrentZoomLevel", this._map.getZoom());
 
             }))
+
+            //after map loads, connect to listen to mouse move & drag events
+            this._map.on("mouse-move", dojo.hitch(this, showCoordinates));
+
+            function showCoordinates(evt) {
+                //the map is in web mercator but display coordinates in geographic (lat, long)
+                require(ArcGIS_Dojo_Loader_Config, ["esri/geometry/webMercatorUtils"], dojo.hitch(this,function (webMercatorUtils) {
+                    var mp = webMercatorUtils.webMercatorToGeographic(evt.mapPoint);
+                    this._contextObj.set("MouseLat", mp.y.toFixed(4) );
+                    this._contextObj.set("MouseLon", mp.x.toFixed(4));
+                }));
+                //display mouse coordinates
+
+            }
+
             this._resetSubscriptions();
             this._updateRendering(callback);
         },
@@ -294,7 +314,9 @@ define([
 
 
                         require(ArcGIS_Dojo_Loader_Config, ["esri/geometry/Point", "esri/SpatialReference"], dojo.hitch(this, function (Point, SpatialReference) {
-                            var p = new Point(parseFloat(this._contextObj.get("ZoomToLon")),parseFloat( this._contextObj.get("ZoomToLat")),new SpatialReference({ wkid: 4326 }));
+                            var p = new Point(parseFloat(this._contextObj.get("ZoomToLon")), parseFloat(this._contextObj.get("ZoomToLat")), new SpatialReference({
+                                wkid: 4326
+                            }));
                             this._map.centerAndZoom(p, 16);
 
                             //this._updateRendering();
