@@ -235,16 +235,16 @@ define([
                             response.map.showZoomSlider();
 
                             switch (evt.geometry.type) {
-                            case "point":
-                            case "multipoint":
-                                symbol = new SimpleMarkerSymbol();
-                                break;
-                            case "polyline":
-                                symbol = new SimpleLineSymbol();
-                                break;
-                            default:
-                                symbol = new SimpleFillSymbol();
-                                break;
+                                case "point":
+                                case "multipoint":
+                                    symbol = new SimpleMarkerSymbol();
+                                    break;
+                                case "polyline":
+                                    symbol = new SimpleLineSymbol();
+                                    break;
+                                default:
+                                    symbol = new SimpleFillSymbol();
+                                    break;
                             }
                             var graphic = new Graphic(evt.geometry, symbol);
                             response.map.graphics.add(graphic);
@@ -268,9 +268,47 @@ define([
                 this._contextObj.set("CurrentZoomLevel", this._map.getZoom());
 
             }))
-
+            this._resetSubscriptions();
             this._updateRendering(callback);
         },
+
+        _resetSubscriptions: function () {
+            var _objectHandle = null,
+                _attrHandle = null,
+                _validationHandle = null;
+            // Release handles on previous object, if any.
+            if (this._handles) {
+                this._handles.forEach(function (handle, i) {
+                    mx.data.unsubscribe(handle);
+                });
+                this._handles = [];
+            }
+            // When a mendix object exists create subscribtions.
+            if (this._contextObj) {
+                _objectHandle = this.subscribe({
+                    guid: this._contextObj.getGuid(),
+                    callback: dojo.hitch(this, function (guid) {
+
+                        console.log(this._contextObj.get("ZoomToLat"));
+                        this._map.panDown();
+
+
+                        require(ArcGIS_Dojo_Loader_Config, ["esri/geometry/Point", "esri/SpatialReference"], dojo.hitch(this, function (Point, SpatialReference) {
+                            var p = new Point(parseFloat(this._contextObj.get("ZoomToLon")),parseFloat( this._contextObj.get("ZoomToLat")),new SpatialReference({ wkid: 4326 }));
+                            this._map.centerAndZoom(p, 16);
+
+                            //this._updateRendering();
+                        }))
+
+
+                    })
+                });
+
+                this._handles = [_objectHandle, ];
+            }
+        },
+
+
 
         resize: function (box) {
             logger.debug(this.id + ".resize");
