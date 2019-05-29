@@ -34,3 +34,8 @@
     overflow: auto;
     padding: 0.5em;
   }
+
+  #basemapGallery{
+    height: 110px;
+    overflow-y: scroll;
+  }

@@ -22,6 +22,8 @@ define([
 
     return declare("ArcGIS.widget.ArcGIS", [_WidgetBase, _TemplatedMixin], {
 
+        autoLoad: false,
+        timeout: 1000,
         templateString: widgetTemplate,
 
         widgetBase: null,
@@ -29,6 +31,7 @@ define([
         // Internal variables.
         _handles: null,
         _contextObj: null,
+        _map: null,
 
         constructor: function () {
             this._handles = [];
@@ -37,6 +40,8 @@ define([
 
         postCreate: function () {
             logger.debug(this.id + ".postCreate");
+
+            this.x = "hi there from postcreate";
 
             // Load a sample base map
             require(ArcGIS_Dojo_Loader_Config, ["esri/map",
@@ -59,7 +64,7 @@ define([
                 "esri/dijit/Measurement",
                 "dojo/parser",
                 "ArcGIS/config/mapConfig"
-            ], function (Map,
+            ], dojo.hitch(this, function (Map,
                 urlUtils,
                 arcgisUtils,
                 Legend,
@@ -78,10 +83,11 @@ define([
                 SimpleFillSymbol,
                 Measurement,
                 parser,
-                Map_Config
-            ) {
+                Map_Config) {
 
                 //parser.parse();
+
+                this.y = "hi there from first call";
 
                 // webmap for DSRA DP270
                 var mapid = "02ca94fa08e243eaa250d7268194b3cf";
@@ -89,143 +95,146 @@ define([
                 // map is hosted on dsraenterprise2 NOT arcgis.com
                 arcgisUtils.arcgisUrl = "https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/sharing/content/items";
 
-                arcgisUtils.createMap(mapid, "map").then(function (response) {
+                arcgisUtils.createMap(mapid, "map").then(
+                    dojo.hitch(this, function (response) {
 
-                    var map = response.map;
+                        var map = response.map;
+                        this._map = map;
+                        this.z = "hi there from second call";
 
-                    //map.hideZoomSlider();
+                        this.set("loaded", true);
 
-                    //add the scalebar
-                    if (false) {
-                        var scalebar = new Scalebar({
-                            map: map,
-                            scalebarUnit: "english"
-                        });
-                    }
+                        //map.hideZoomSlider();
 
-                    var measurement = new Measurement({
-                        map: map
-                      }, "measurementDiv");
-                      measurement.startup();
-                    // setup multi source search
-                    var search = new Search({
-                        map: response.map,
-                        enableButtonMode: true,
-                        showInfoWindowOnSelect: true,
-                        enableInfoWindow: true
-                    }, "search");
+                        //add the scalebar
+                        if (false) {
+                            var scalebar = new Scalebar({
+                                map: map,
+                                scalebarUnit: "english"
+                            });
+                        }
 
-                    //Set the sources above to the search widget
-                    //search.set("sources", Map_Config["values"].searchConfig.sources);
-
-                    var sources = search.get("sources");
-                    sources.push({
-                        featureLayer: new FeatureLayer("https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/CongressionalDistricts/FeatureServer/0"),
-                        searchFields: ["DISTRICTID"],
-                        displayField: "DISTRICTID",
-                        exactMatch: false,
-                        outFields: ["DISTRICTID", "NAME", "PARTY"],
-                        name: "Congressional Districts",
-                        placeholder: "3708",
-                        maxResults: 6,
-                        maxSuggestions: 6,
-
-                        //Create an InfoTemplate and include three fields
-                        infoTemplate: new InfoTemplate("Congressional District",
-                            "District ID: ${DISTRICTID}</br>Name: ${NAME}</br>Party Affiliation: ${PARTY}"
-                        ),
-                        enableSuggestions: true,
-                        minCharacters: 0
-                    });
-
-                    sources.push({
-                        featureLayer: new FeatureLayer("https://dsraenterprise2.canadacentral.cloudapp.azure.com/server/rest/services/Hosted/FSA_AREA/FeatureServer/0"),
-                        "searchFields": ["fsa_name", "depot_code"],
-                        "displayField": "fsa_name",
-                        "exactMatch": true,
-                        outFields: ["fsa_name", "depot_code"],
-                        name: "FSA_AREA",
-                        placeholder: "Enter Search Criterion",
-                        maxResults: 6,
-                        maxSuggestions: 6, 
-
-                        //Create an InfoTemplate and include two fields
-                        infoTemplate: new InfoTemplate("FSA INFO",
-                            "FSA :  ${fsa_name}</br>Depot: ${depot_code}</br>"
-                        ),
-                        enableSuggestions: true,
-                        minCharacters: 0
-                    });
-
-
-
-                    sources.push({
-                        featureLayer: new FeatureLayer("https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/US_Senators/FeatureServer/0"),
-                        searchFields: ["Name"],
-                        displayField: "Name",
-                        exactMatch: false,
-                        name: "Senator",
-                        outFields: ["*"],
-                        placeholder: "Senator name",
-                        maxResults: 6,
-                        maxSuggestions: 6,
-
-                        //Create an InfoTemplate
-
-                        infoTemplate: new InfoTemplate("Senator information",
-                            "Name: ${Name}</br>State: ${State}</br>Party Affiliation: ${Party}</br>Phone No: ${Phone_Number}<br><a href=${Web_Page} target=_blank ;'>Website</a>"
-                        ),
-
-                        enableSuggestions: true,
-                        minCharacters: 0
-                    });
-
-                    //Set the sources above to the search widget
-                    search.set("sources", sources);
-
-                    search.startup();
-
-                    var basemapGallery = new BasemapGallery({
-                        showArcGISBasemaps: true,
-                        map: response.map,
-                    }, "basemapGallery");
-                    basemapGallery.startup();
-
-                    // clickable legend
-                    var myWidget = new LayerList({
+                        var measurement = new Measurement({
+                            map: map
+                        }, "measurementDiv");
+                        measurement.startup();
+                        // setup multi source search
+                        var search = new Search({
                             map: response.map,
-                            layers: arcgisUtils.getLayerList(response)
-                        },
-                        "layerList"
-                    );
-                    myWidget.startup();
+                            enableButtonMode: true,
+                            showInfoWindowOnSelect: true,
+                            enableInfoWindow: true
+                        }, "search");
 
-                    var home = new HomeButton({
-                        map: response.map
-                    }, "HomeButton");
-                    home.startup();
+                        //Set the sources above to the search widget
+                        //search.set("sources", Map_Config["values"].searchConfig.sources);
 
-                    var toolbar = new Draw(response.map);
-                    toolbar.on("draw-end", addToMap);
+                        var sources = search.get("sources");
+                        sources.push({
+                            featureLayer: new FeatureLayer("https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/CongressionalDistricts/FeatureServer/0"),
+                            searchFields: ["DISTRICTID"],
+                            displayField: "DISTRICTID",
+                            exactMatch: false,
+                            outFields: ["DISTRICTID", "NAME", "PARTY"],
+                            name: "Congressional Districts",
+                            placeholder: "3708",
+                            maxResults: 6,
+                            maxSuggestions: 6,
 
-                    // wire up the buttons (NEEDS BETTER SELECTOR!)
-                    document.querySelectorAll("#header button").forEach(function (d) {
-                        d.addEventListener("click", activateTool);
-                    })
+                            //Create an InfoTemplate and include three fields
+                            infoTemplate: new InfoTemplate("Congressional District",
+                                "District ID: ${DISTRICTID}</br>Name: ${NAME}</br>Party Affiliation: ${PARTY}"
+                            ),
+                            enableSuggestions: true,
+                            minCharacters: 0
+                        });
 
-                    function activateTool() {
-                        var tool = this.textContent.toUpperCase().replace(/ /g, "_");
-                        toolbar.activate(Draw[tool]);
-                        response.map.hideZoomSlider();
+                        sources.push({
+                            featureLayer: new FeatureLayer("https://dsraenterprise2.canadacentral.cloudapp.azure.com/server/rest/services/Hosted/FSA_AREA/FeatureServer/0"),
+                            "searchFields": ["fsa_name", "depot_code"],
+                            "displayField": "fsa_name",
+                            "exactMatch": true,
+                            outFields: ["fsa_name", "depot_code"],
+                            name: "FSA_AREA",
+                            placeholder: "Enter Search Criterion",
+                            maxResults: 6,
+                            maxSuggestions: 6,
 
-                    }
+                            //Create an InfoTemplate and include two fields
+                            infoTemplate: new InfoTemplate("FSA INFO",
+                                "FSA :  ${fsa_name}</br>Depot: ${depot_code}</br>"
+                            ),
+                            enableSuggestions: true,
+                            minCharacters: 0
+                        });
 
-                    function addToMap(evt) {
-                        var symbol;
-                        toolbar.deactivate();
-                        response.map.showZoomSlider();
+                        sources.push({
+                            featureLayer: new FeatureLayer("https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/US_Senators/FeatureServer/0"),
+                            searchFields: ["Name"],
+                            displayField: "Name",
+                            exactMatch: false,
+                            name: "Senator",
+                            outFields: ["*"],
+                            placeholder: "Senator name",
+                            maxResults: 6,
+                            maxSuggestions: 6,
 
-                        switch (evt.geometry.type) {
+                            //Create an InfoTemplate
+
+                            infoTemplate: new InfoTemplate("Senator information",
+                                "Name: ${Name}</br>State: ${State}</br>Party Affiliation: ${Party}</br>Phone No: ${Phone_Number}<br><a href=${Web_Page} target=_blank ;'>Website</a>"
+                            ),
+
+                            enableSuggestions: true,
+                            minCharacters: 0
+                        });
+
+                        //Set the sources above to the search widget
+                        search.set("sources", sources);
+
+                        search.startup();
+
+                        var basemapGallery = new BasemapGallery({
+                            showArcGISBasemaps: true,
+                            map: response.map,
+                        }, "basemapGallery");
+                        basemapGallery.startup();
+
+                        // clickable legend
+                        var myWidget = new LayerList({
+                                map: response.map,
+                                layers: arcgisUtils.getLayerList(response)
+                            },
+                            "layerList"
+                        );
+                        myWidget.startup();
+
+                        var home = new HomeButton({
+                            map: response.map
+                        }, "HomeButton");
+                        home.startup();
+
+                        var toolbar = new Draw(response.map);
+                        toolbar.on("draw-end", addToMap);
+
+                        // wire up the buttons (NEEDS BETTER SELECTOR!)
+                        document.querySelectorAll("#header button").forEach(function (d) {
+                            d.addEventListener("click", activateTool);
+                        })
+
+                        function activateTool() {
+                            var tool = this.textContent.toUpperCase().replace(/ /g, "_");
+                            toolbar.activate(Draw[tool]);
+                            response.map.hideZoomSlider();
+
+                        }
+
+                        function addToMap(evt) {
+                            var symbol;
+                            toolbar.deactivate();
+                            response.map.showZoomSlider();
+
+                            switch (evt.geometry.type) {
                             case "point":
                             case "multipoint":
                                 symbol = new SimpleMarkerSymbol();
@@ -236,19 +245,30 @@ define([
                             default:
                                 symbol = new SimpleFillSymbol();
                                 break;
+                            }
+                            var graphic = new Graphic(evt.geometry, symbol);
+                            response.map.graphics.add(graphic);
                         }
-                        var graphic = new Graphic(evt.geometry, symbol);
-                        response.map.graphics.add(graphic);
-                    }
-                });
 
-            })
+                    }));
+
+            }))
         },
 
         update: function (obj, callback) {
             logger.debug(this.id + ".update");
-
             this._contextObj = obj;
+
+            // set zoom level to current zoom level
+            this._contextObj.set("CurrentZoomLevel", this._map.getZoom());
+
+            // hook up listener to zoom-end event
+
+            this._map.on("zoom-end", dojo.hitch(this, function () {
+                this._contextObj.set("CurrentZoomLevel", this._map.getZoom());
+
+            }))
+
             this._updateRendering(callback);
         },
 
