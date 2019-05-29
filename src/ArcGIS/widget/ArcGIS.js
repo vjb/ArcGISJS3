@@ -95,15 +95,15 @@ define([
                     dojo.hitch(this, function (response) {
 
                         var map = response.map;
+
                         this._map = map;
+                        this._response = response;
 
-                        response.itemInfo.itemData.operationalLayers[0].layerObject.on("click", function (evt, l) {
-                            console.log(evt.graphic.attributes);
-                        });
 
+                        // shouldn't this be closer to the end?
                         this.set("loaded", true);
 
-                        //map.hideZoomSlider();
+
 
                         //add the scalebar
                         if (false) {
@@ -234,16 +234,16 @@ define([
                             response.map.showZoomSlider();
 
                             switch (evt.geometry.type) {
-                            case "point":
-                            case "multipoint":
-                                symbol = new SimpleMarkerSymbol();
-                                break;
-                            case "polyline":
-                                symbol = new SimpleLineSymbol();
-                                break;
-                            default:
-                                symbol = new SimpleFillSymbol();
-                                break;
+                                case "point":
+                                case "multipoint":
+                                    symbol = new SimpleMarkerSymbol();
+                                    break;
+                                case "polyline":
+                                    symbol = new SimpleLineSymbol();
+                                    break;
+                                default:
+                                    symbol = new SimpleFillSymbol();
+                                    break;
                             }
                             var graphic = new Graphic(evt.geometry, symbol);
                             response.map.graphics.add(graphic);
@@ -270,6 +270,12 @@ define([
 
             //after map loads, connect to listen to mouse move & drag events
             this._map.on("mouse-move", dojo.hitch(this, showCoordinates));
+
+            // connect arcgis objects to Mendix entities
+            this._response.itemInfo.itemData.operationalLayers[0].layerObject.on("click", dojo.hitch(this, function (evt) {
+                console.log(evt.graphic.attributes);
+                this._contextObj.set("GlobalID", evt.graphic.attributes.globalid);
+            }));
 
             function showCoordinates(evt) {
                 //the map is in web mercator but display coordinates in geographic (lat, long)
