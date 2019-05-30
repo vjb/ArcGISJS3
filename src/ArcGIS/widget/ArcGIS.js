@@ -63,7 +63,7 @@ define([
                 "esri/symbols/SimpleFillSymbol",
                 "esri/dijit/Measurement",
                 "dojo/parser",
-                "ArcGIS/config/mapConfig"
+                "ArcGIS/config/mapConfig",
             ], dojo.hitch(this, function (Map,
                 urlUtils,
                 arcgisUtils,
@@ -83,7 +83,8 @@ define([
                 SimpleFillSymbol,
                 Measurement,
                 parser,
-                Map_Config) {
+                Map_Config
+            ) {
 
                 // webmap for DSRA DP270
                 var mapid = "02ca94fa08e243eaa250d7268194b3cf";
@@ -129,24 +130,6 @@ define([
                         //search.set("sources", Map_Config["values"].searchConfig.sources);
 
                         var sources = search.get("sources");
-                        sources.push({
-                            featureLayer: new FeatureLayer("https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/CongressionalDistricts/FeatureServer/0"),
-                            searchFields: ["DISTRICTID"],
-                            displayField: "DISTRICTID",
-                            exactMatch: false,
-                            outFields: ["DISTRICTID", "NAME", "PARTY"],
-                            name: "Congressional Districts",
-                            placeholder: "3708",
-                            maxResults: 6,
-                            maxSuggestions: 6,
-
-                            //Create an InfoTemplate and include three fields
-                            infoTemplate: new InfoTemplate("Congressional District",
-                                "District ID: ${DISTRICTID}</br>Name: ${NAME}</br>Party Affiliation: ${PARTY}"
-                            ),
-                            enableSuggestions: true,
-                            minCharacters: 0
-                        });
 
                         sources.push({
                             featureLayer: new FeatureLayer("https://dsraenterprise2.canadacentral.cloudapp.azure.com/server/rest/services/Hosted/FSA_AREA/FeatureServer/0"),
@@ -273,9 +256,9 @@ define([
 
             // connect arcgis objects to Mendix entities
             this._response.itemInfo.itemData.operationalLayers[0].layerObject.on("click", dojo.hitch(this, function (evt) {
-                
+
                 this._contextObj.set("GlobalID", evt.graphic.attributes.globalid);
-                this._contextObj.set("AssetAsJSON", JSON.stringify(evt.graphic.attributes,null,2));
+                this._contextObj.set("AssetAsJSON", JSON.stringify(evt.graphic.attributes, null, 2));
             }));
 
             function showCoordinates(evt) {
@@ -306,12 +289,34 @@ define([
             }
             // When a mendix object exists create subscribtions.
             if (this._contextObj) {
+
                 _objectHandle = this.subscribe({
                     guid: this._contextObj.getGuid(),
                     callback: dojo.hitch(this, function (guid) {
 
-                        console.log(this._contextObj.get("ZoomToLat"));
-                        this._map.panDown();
+                        console.log("context entity has updated");
+
+                        /*
+                        require(ArcGIS_Dojo_Loader_Config, ["esri/geometry/Point", "esri/SpatialReference"], dojo.hitch(this, function (Point, SpatialReference) {
+                            var p = new Point(parseFloat(this._contextObj.get("ZoomToLon")), parseFloat(this._contextObj.get("ZoomToLat")), new SpatialReference({
+                                wkid: 4326
+                            }));
+                            this._map.centerAndZoom(p, 16);
+
+                            //this._updateRendering();
+                        }))
+                        */
+
+
+                    })
+                });
+
+                var subscription = this.subscribe({
+                    guid: this._contextObj.getGuid(),
+                    attr: "Switch_ZoomToLatLon",
+                    callback: dojo.hitch(function (guid, attr, value) {
+                        console.log("Object with guid " + guid + " had its attribute " +
+                            attr + " change to " + value);
 
                         require(ArcGIS_Dojo_Loader_Config, ["esri/geometry/Point", "esri/SpatialReference"], dojo.hitch(this, function (Point, SpatialReference) {
                             var p = new Point(parseFloat(this._contextObj.get("ZoomToLon")), parseFloat(this._contextObj.get("ZoomToLat")), new SpatialReference({
@@ -322,10 +327,11 @@ define([
                             //this._updateRendering();
                         }))
 
+
                     })
                 });
 
-                this._handles = [_objectHandle, ];
+                this._handles = [_objectHandle, subscription];
             }
         },
 
