@@ -1,51 +1,51 @@
 .widgetname #HomeButton {
-    position: absolute;
-    top: 200px;
-    left: 20px;
-    z-index: 50;
-  }
-
-  .widgetname #LocateButton {
-    position: absolute;
-    top: 260px;
-    left: 20px;
-    z-index: 50;
-  }
-
-  #map_zoom_slider{
-    left: 5px;
-  }
- .widgetname #map {
-    padding-top: 10px;
-    margin:0;
-    height:100%;
-    padding-bottom: 20px;
-  }
-
-  .widgetname #search {
-    position: absolute;
-    top: 420px;
-    left: 20px;
-    z-index: 2;
-  }
-
-  .home {
-      margin-top:30px;
-  }
-
-  #mainWindow {
-    font-family: sans-serif; 
-    height: 100%; 
-    width: 100%; 
-  }
-
-  #header {
-    height: 80px; 
-    overflow: auto;
-    padding: 0.5em;
-  }
-
-  #basemapGallery{
-    height: 110px;
-    overflow-y: scroll;
-  }
+  position: absolute;
+  top: 200px;
+  left: 20px;
+  z-index: 50;
+}
+.widgetname #LocateButton {
+  position: absolute;
+  top: 260px;
+  left: 20px;
+  z-index: 50;
+}
+#map_zoom_slider {
+  left: 5px;
+}
+.widgetname #map {
+  padding-top: 10px;
+  margin: 0;
+  height: 100%;
+  padding-bottom: 20px;
+}
+.btn-default {
+  margin-right: 5px;
+}
+.widgetname #search {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2;
+}
+.card {
+  padding:  12px!important;
+  margin-bottom: 5px;
+}
+.home {
+  margin-top: 30px;
+}
+#mainWindow {
+  font-family: sans-serif;
+  height: 100%;
+  width: 100%;
+}
+#header {
+  height: 80px;
+  overflow: auto;
+  padding: 0.5em;
+}
+#basemapGallery {
+  height: 110px;
+  overflow-y: scroll;
+}

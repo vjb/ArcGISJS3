@@ -282,8 +282,8 @@ define([
                 //the map is in web mercator but display coordinates in geographic (lat, long)
                 require(ArcGIS_Dojo_Loader_Config, ["esri/geometry/webMercatorUtils"], dojo.hitch(this, function (webMercatorUtils) {
                     var mp = webMercatorUtils.webMercatorToGeographic(evt.mapPoint);
-                    this._contextObj.set("MouseLat", mp.y.toFixed(4));
-                    this._contextObj.set("MouseLon", mp.x.toFixed(4));
+                    this._contextObj.set("MouseLat", mp.y.toFixed(8));
+                    this._contextObj.set("MouseLon", mp.x.toFixed(8));
                 }));
                 //display mouse coordinates
 
