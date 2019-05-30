@@ -275,7 +275,7 @@ define([
             this._response.itemInfo.itemData.operationalLayers[0].layerObject.on("click", dojo.hitch(this, function (evt) {
                 
                 this._contextObj.set("GlobalID", evt.graphic.attributes.globalid);
-                this._contextObj.set("AssetAsJSON", JSON.stringify(evt.graphic.attributes));
+                this._contextObj.set("AssetAsJSON", JSON.stringify(evt.graphic.attributes,null,2));
             }));
 
             function showCoordinates(evt) {
