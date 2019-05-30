@@ -331,19 +331,7 @@ define([
                     })
                 });
 
-                var subscription = this.subscribe({
-                    guid: this._contextObj.getGuid(),
-                    attr: "Switch_ZoomToGlobalID",
-                    callback: dojo.hitch(function (guid, attr, value) {
-                        console.log("Object with guid " + guid + " had its attribute " +
-                            attr + " change to " + value);
-
-                            console.log(this._contextObj.get("ZoomToGlobalId"));
-
-
-
-                    })
-                });
+               
 
                 var subscription = this.subscribe({
                     guid: this._contextObj.getGuid(),
@@ -352,7 +340,7 @@ define([
                         console.log("Object with guid " + guid + " had its attribute " +
                             attr + " change to " + value);
 
-                            this._map.setZoom(value);
+                        this._map.setZoom(value);
 
 
 
