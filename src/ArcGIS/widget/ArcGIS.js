@@ -331,7 +331,46 @@ define([
                     })
                 });
 
-               
+                var subscription = this.subscribe({
+                    guid: this._contextObj.getGuid(),
+                    attr: "Switch_ZoomToGlobalID",
+                    callback: dojo.hitch(function (guid, attr, value) {
+                        console.log("Object with guid " + guid + " had its attribute " +
+                            attr + " change to " + value);
+
+                        require(ArcGIS_Dojo_Loader_Config, ["esri/tasks/QueryTask", "esri/tasks/query", "esri/SpatialReference"], dojo.hitch(this, function (QueryTask, Query, SpatialReference) {
+                            var query = new Query();
+                            var queryTask = new QueryTask("https://dsraenterprise2.canadacentral.cloudapp.azure.com/server/rest/services/Hosted/ASSET_POINT/FeatureServer/0");
+                            var spatialRef = new SpatialReference({
+                                wkid: 4326
+                            });
+
+                            function queryTaskExecuteCompleteHandler(queryResults) {
+                                console.log("complete", queryResults);
+                            }
+
+                            function queryTaskErrorHandler(queryError) {
+                                console.log("error", queryError.error.details);
+                            }
+
+                            query.outFields = ["*"];
+                            query.returnGeometry = true;
+                            query.where="globalid='" + this._contextObj.get("ZoomToGlobalId") + "'";
+                            query.outSpatialReference = spatialRef;
+                            //query.like("{5FD85F2B-3D34-4E5B-8551-0344EA35BCA6}")
+                            //query.where("objectid='10'");
+                            queryTask.on("complete", queryTaskExecuteCompleteHandler);
+                            queryTask.on("error", queryTaskErrorHandler);
+                            queryTask.execute(query);
+                             
+                        }))
+
+
+
+                    })
+                });
+
+
 
                 var subscription = this.subscribe({
                     guid: this._contextObj.getGuid(),
