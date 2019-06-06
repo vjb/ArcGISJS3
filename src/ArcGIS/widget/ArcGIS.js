@@ -355,14 +355,14 @@ define([
 
                             query.outFields = ["*"];
                             query.returnGeometry = true;
-                            query.where="globalid='" + this._contextObj.get("ZoomToGlobalId") + "'";
+                            query.where = "globalid='" + this._contextObj.get("ZoomToGlobalId") + "'";
                             query.outSpatialReference = spatialRef;
                             //query.like("{5FD85F2B-3D34-4E5B-8551-0344EA35BCA6}")
                             //query.where("objectid='10'");
                             queryTask.on("complete", queryTaskExecuteCompleteHandler);
                             queryTask.on("error", queryTaskErrorHandler);
                             queryTask.execute(query);
-                             
+
                         }))
 
 
