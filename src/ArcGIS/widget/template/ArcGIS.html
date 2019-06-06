@@ -1,30 +1,68 @@
 <div class="widgetname" data-dojo-attach-point="widgetBase">
-    <div id="layerList"></div>
+
+
     <div id="mapContainer">
         <div id="map"></div>
         <div id="search"></div>
-    </div>
-    <div id="basemapGallery"></div>
-    <!--<div id="HomeButton"></div>-->
-    
-    <div id="mainWindow" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline'">
-        <div id="header" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'">
-            <span>Draw:<br /></span>
-            <button data-dojo-type="dijit/form/Button">Point</button>
-            <button data-dojo-type="dijit/form/Button">Multi Point</button>
-            <button data-dojo-type="dijit/form/Button">Line</button>
-            <button data-dojo-type="dijit/form/Button">Polyline</button>
-            <button data-dojo-type="dijit/form/Button">Polygon</button>
-            <button data-dojo-type="dijit/form/Button">Freehand Polyline</button>
-            <button data-dojo-type="dijit/form/Button">Freehand Polygon</button>
+        <div class="dropdownWrapper">
+            <div class="dropdown">
+                <button class="dropbtn">Layers</button>
+                <div class="dropdown-content">
+                    <div id="layerList"></div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Draw Tools</button>
+                <div class="dropdown-content">
+                    <div id="mainWindow" data-dojo-type="dijit/layout/BorderContainer"
+                        data-dojo-props="design:'headline'">
+                        <div id="header" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'">
 
-            <button data-dojo-type="dijit/form/Button">Arrow</button>
-            <button data-dojo-type="dijit/form/Button">Triangle</button>
-            <button data-dojo-type="dijit/form/Button">Circle</button>
-            <button data-dojo-type="dijit/form/Button">Ellipse</button>
+                            <button data-dojo-type="dijit/form/Button">Point</button>
+                            <button data-dojo-type="dijit/form/Button">Multi Point</button>
+                            <button data-dojo-type="dijit/form/Button">Line</button>
+                            <button data-dojo-type="dijit/form/Button">Polyline</button>
+                            <button data-dojo-type="dijit/form/Button">Polygon</button>
+                            <button data-dojo-type="dijit/form/Button">Freehand Polyline</button>
+                            <button data-dojo-type="dijit/form/Button">Freehand Polygon</button>
+
+                            <button data-dojo-type="dijit/form/Button">Arrow</button>
+                            <button data-dojo-type="dijit/form/Button">Triangle</button>
+                            <button data-dojo-type="dijit/form/Button">Circle</button>
+                            <button data-dojo-type="dijit/form/Button">Ellipse</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Base Maps</button>
+                <div class="dropdown-content">
+                    <div id="basemapGallery"></div>
+                </div>
+            </div>
+
+
+
+            <!--<div id="HomeButton"></div>-->
+            <!-- 
+            <div class="dropdown">
+                <button class="dropbtn">Measure Tools</button>
+                <div class="dropdown-content">
+                    <div id="measurementDiv"></div>
+                </div>
+            </div>
         </div>
+        -->
+
+        </div>
+
+
+
+
+
+
+
     </div>
-    <div id="measurementDiv"></div>
-
-
-</div>
