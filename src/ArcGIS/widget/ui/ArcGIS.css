@@ -28,6 +28,7 @@
 .dropdown button {
     width: 100%;
     margin-bottom: 4px;
+    text-align: left;
 }
 
 .dropbtn {
@@ -41,6 +42,9 @@
     right: 40px;
 }
 
+.ico {
+  margin-right : 10px;
+}
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
