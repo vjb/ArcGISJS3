@@ -128,62 +128,30 @@ define([
                             enableInfoWindow: true
                         }, "search");
 
-                        //Set the sources above to the search widget
-                        //search.set("sources", Map_Config["values"].searchConfig.sources);
+                        //Set the sources for the search widget
 
+                        // note: this line will automatically add the default GEO services
                         var sources = search.get("sources");
 
-                        sources.push({
-                            featureLayer: new FeatureLayer("https://dsraenterprise2.canadacentral.cloudapp.azure.com/server/rest/services/Hosted/FSA_AREA/FeatureServer/0"),
-                            "searchFields": ["fsa_name", "depot_code"],
-                            "displayField": "fsa_name",
-                            "exactMatch": true,
-                            outFields: ["fsa_name", "depot_code"],
-                            name: "FSA_AREA",
-                            placeholder: "Enter Search Criterion",
-                            maxResults: 6,
-                            maxSuggestions: 6,
+                        // loop over the search config objects (defined in the JSON)
 
-                            //Create an InfoTemplate and include two fields
-                            infoTemplate: new InfoTemplate("FSA INFO",
-                                "FSA :  ${fsa_name}</br>Depot: ${depot_code}</br>"
-                            ),
-                            enableSuggestions: true,
-                            minCharacters: 0
-                        });
+                        var searchSources = this.Map_Config.values.searchConfig.sources;
 
-                        sources.push({
-                            featureLayer: new FeatureLayer("https://dsraenterprise2.canadacentral.cloudapp.azure.com/server/rest/services/Hosted/ASSET_POINT/FeatureServer/0"),
-                            name: "ASSET_POINT",
-                            enableSuggestions: true,
-                            exactMatch: true,
-                            "placeholder": "Enter Search Criterion",
-                            "searchFields": ["site_identifier"],
-                            "maxSuggestions": 8,
-                            "displayField": "site_identifier",
-                            "suggestionTemplate": "Site: ${site_identifier}"
-                        })
+                        var numberOfSources = searchSources.length;
 
-                        sources.push({
-                            featureLayer: new FeatureLayer("https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/US_Senators/FeatureServer/0"),
-                            searchFields: ["Name"],
-                            displayField: "Name",
-                            exactMatch: false,
-                            name: "Senator",
-                            outFields: ["*"],
-                            placeholder: "Senator name",
-                            maxResults: 6,
-                            maxSuggestions: 6,
+                        for (var i = 0; i < numberOfSources; i++) {
 
-                            //Create an InfoTemplate
+                            var source = searchSources[i];
 
-                            infoTemplate: new InfoTemplate("Senator information",
-                                "Name: ${Name}</br>State: ${State}</br>Party Affiliation: ${Party}</br>Phone No: ${Phone_Number}<br><a href=${Web_Page} target=_blank ;'>Website</a>"
-                            ),
+                            // only care about feature layers (default GEO already there)
+                            if ('undefined' == typeof source.flayerId) {
+                                continue;
+                            }
 
-                            enableSuggestions: true,
-                            minCharacters: 0
-                        });
+                            var fl = new FeatureLayer(source.url);
+                            source.featureLayer = fl;
+                            sources.push(source);
+                        }
 
                         //Set the sources above to the search widget
                         search.set("sources", sources);
