@@ -62,6 +62,8 @@ define([
                 "esri/symbols/SimpleLineSymbol",
                 "esri/symbols/SimpleFillSymbol",
                 "esri/dijit/Measurement",
+                "esri/toolbars/edit",
+                "dojo/_base/event",
                 "dojo/parser",
                 "ArcGIS/config/mapConfig",
             ], dojo.hitch(this, function (Map,
@@ -82,6 +84,8 @@ define([
                 SimpleLineSymbol,
                 SimpleFillSymbol,
                 Measurement,
+                Edit,
+                event,
                 parser,
                 Map_Config
             ) {
@@ -102,6 +106,25 @@ define([
                         this._map = map;
                         this._response = response;
 
+                        var editToolbar = new Edit(map);
+
+                        //Activate the toolbar when you click on a graphic
+                        map.graphics.on("click", function (evt) {
+                            event.stop(evt);
+                            activateToolbar(evt.graphic);
+                        });
+
+                        //deactivate the toolbar when you click outside a graphic
+                        map.on("click", function (evt) {
+                            editToolbar.deactivate();
+                        });
+
+                        function activateToolbar(graphic) {
+
+                            
+                            editToolbar.activate(0 | Edit.MOVE, graphic);
+                        }
+
 
                         // shouldn't this be closer to the end?
                         this.set("loaded", true);
@@ -116,10 +139,13 @@ define([
                             });
                         }
 
+                        /*
                         var measurement = new Measurement({
                             map: map
                         }, "measurementDiv");
                         measurement.startup();
+                        */
+
                         // setup multi source search
                         var search = new Search({
                             map: response.map,
@@ -134,15 +160,11 @@ define([
                         var sources = search.get("sources");
 
                         // loop over the search config objects (defined in the JSON)
-
                         var searchSources = this.Map_Config.values.searchConfig.sources;
-
                         var numberOfSources = searchSources.length;
 
                         for (var i = 0; i < numberOfSources; i++) {
-
                             var source = searchSources[i];
-
                             // only care about feature layers (default GEO already there)
                             if ('undefined' == typeof source.flayerId) {
                                 continue;

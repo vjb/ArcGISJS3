@@ -40,7 +40,7 @@ define({
             "sources": [{
                 "flayerId": "FSA_AREA_9992",
                 "url": "https://dsraenterprise2.canadacentral.cloudapp.azure.com/server/rest/services/Hosted/FSA_AREA/FeatureServer/0",
-                "name": "FSA_AREA",
+                "name": "FSA AREA",
                 "id": "dojoUnique4",
                 "enable": true,
                 "enableSuggestions": true,
