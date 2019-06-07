@@ -176,25 +176,36 @@ define([
 
                         search.startup();
 
+                        if (this.showBaseMaps){
+                            var el = document.getElementsByClassName("baseMaps")[0];
+                            el.style.display = "block";
                         var basemapGallery = new BasemapGallery({
                             showArcGISBasemaps: true,
                             map: response.map,
                         }, "basemapGallery");
                         basemapGallery.startup();
+                    }
 
                         // clickable legend
-                        var myWidget = new LayerList({
-                                map: response.map,
-                                layers: arcgisUtils.getLayerList(response)
-                            },
-                            "layerList"
-                        );
-                        myWidget.startup();
-
+                        if (this.showLayerTools) {
+                            var el = document.getElementsByClassName("layerTools")[0];
+                            el.style.display = "block";
+                            var myWidget = new LayerList({
+                                    map: response.map,
+                                    layers: arcgisUtils.getLayerList(response)
+                                },
+                                "layerList"
+                            );
+                            myWidget.startup();
+                        }
                         var home = new HomeButton({
                             map: response.map
                         }, "HomeButton");
                         home.startup();
+
+                        if (this.showDrawTools){
+                            var el = document.getElementsByClassName("drawTools")[0];
+                            el.style.display = "block";
 
                         var toolbar = new Draw(response.map);
                         toolbar.on("draw-end", addToMap);
@@ -203,6 +214,7 @@ define([
                         document.querySelectorAll("#header button").forEach(function (d) {
                             d.addEventListener("click", activateTool);
                         })
+                    }
 
                         function activateTool() {
                             var tool = this.textContent.toUpperCase().replace(/ /g, "_");

@@ -1,15 +1,28 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<widget id="ArcGIS.widget.ArcGIS" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
-    <name>ArcGIS</name>
-    <description>The description of this widget.</description>
-
-    <icon />
-
-    <properties>
-        <property key="dummyKey" type="string" required="false" defaultValue="">
-            <caption>Dummy key</caption>
-            <category>Appearance</category>
-            <description>This key was added to make the widget work in the Modeler (needs atleast 1 key). Please change/remove this one</description>
-        </property>
-    </properties>
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.mendix.com/widget/1.0/" id="ArcGIS.widget.ArcGIS" needsEntityContext="true">
+   <name>ArcGIS</name>
+   <description>The description of this widget.</description>
+   <icon />
+   <properties>
+      <property key="dummyKey" type="string" required="false" defaultValue="">
+         <caption>Dummy key</caption>
+         <category>Appearance</category>
+         <description>This key was added to make the widget work in the Modeler (needs atleast 1 key). Please change/remove this one</description>
+      </property>
+      <property key="showLayerTools" type="boolean" defaultValue="true">
+         <caption>Show Layer Tools</caption>
+         <category>Toolbars</category>
+         <description>Show Layer Tools on the map.</description>
+      </property>
+      <property key="showDrawTools" type="boolean" defaultValue="true">
+         <caption>Show Draw Tools</caption>
+         <category>Toolbars</category>
+         <description>Show Draw Tools on the map.</description>
+      </property>
+      <property key="showBaseMaps" type="boolean" defaultValue="true">
+         <caption>Show Base Maps</caption>
+         <category>Toolbars</category>
+         <description>Show Base Maps on the map.</description>
+      </property>
+   </properties>
 </widget>

@@ -5,27 +5,28 @@
         <div id="map"></div>
         <div id="search"></div>
         <div class="dropdownWrapper">
-            <div class="dropdown">
-                <button class="dropbtn"><span class="esri-icon-layer-list ico"></span>Layers</button>
+           
+            <div class="dropdown" >
+                <button class="dropbtn layerTools"  style="display: none;" ><span class="esri-icon-layer-list ico"></span>Layers</button>
                 <div class="dropdown-content">
                     <div id="layerList"></div>
                 </div>
             </div>
+           
             <div class="dropdown">
-                <button class="dropbtn"><span class="esri-icon-edit ico"></span>Draw Tools</button>
+                <button class="dropbtn drawTools" style="display: none;"><span class="esri-icon-edit ico"></span>Draw Tools</button>
                 <div class="dropdown-content">
                     <div id="mainWindow" data-dojo-type="dijit/layout/BorderContainer"
                         data-dojo-props="design:'headline'">
                         <div id="header" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'">
 
                             <button data-dojo-type="dijit/form/Button"><span class="esri-icon-map-pin ico"></span>Point</button>
-
                             <button data-dojo-type="dijit/form/Button"><span class="esri-icon-polyline ico"></span>Multi Point</button>
                             <button data-dojo-type="dijit/form/Button"><span class="esri-icon-minus ico"></span>Line</button>
-                            <button data-dojo-type="dijit/form/Button">Polyline</button>
-                            <button data-dojo-type="dijit/form/Button">Polygon</button>
-                            <button data-dojo-type="dijit/form/Button">Freehand Polyline</button>
-                            <button data-dojo-type="dijit/form/Button">Freehand Polygon</button>
+                            <button data-dojo-type="dijit/form/Button"><span class="esri-icon-map-pin ico"></span>Polyline</button>
+                            <button data-dojo-type="dijit/form/Button"><span class="esri-icon-map-pin ico"></span>Polygon</button>
+                            <button data-dojo-type="dijit/form/Button"><span class="esri-icon-map-pin ico"></span>Freehand Polyline</button>
+                            <button data-dojo-type="dijit/form/Button"><span class="esri-icon-map-pin ico"></span>Freehand Polygon</button>
 
                             <button data-dojo-type="dijit/form/Button">Arrow</button>
                             <button data-dojo-type="dijit/form/Button">
@@ -42,7 +43,7 @@
 
             </div>
             <div class="dropdown">
-                <button class="dropbtn"><span class="esri-icon-basemap ico"></span>Base Maps</button>
+                <button class="dropbtn baseMaps"  style="display: none;"><span class="esri-icon-basemap ico"></span>Base Maps</button>
                 <div class="dropdown-content">
                     <div id="basemapGallery"></div>
                 </div>
