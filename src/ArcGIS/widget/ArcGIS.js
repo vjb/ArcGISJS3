@@ -153,6 +153,25 @@ define([
                         });
 
                         sources.push({
+
+                            featureLayer: new FeatureLayer("https://dsraenterprise2.canadacentral.cloudapp.azure.com/server/rest/services/Hosted/ASSET_POINT/FeatureServer/0"),
+                
+                            name: "ASSET_POINT",
+                           
+                            
+                            enableSuggestions: true,
+                            exactMatch: true,
+                            "placeholder": "Enter Search Criterion",
+                            "searchFields": ["site_identifier"],
+                            "maxSuggestions": 8,
+                            "displayField": "site_identifier",
+                            "suggestionTemplate": "Site: ${site_identifier}"
+
+
+
+                        })
+
+                        sources.push({
                             featureLayer: new FeatureLayer("https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/US_Senators/FeatureServer/0"),
                             searchFields: ["Name"],
                             displayField: "Name",
