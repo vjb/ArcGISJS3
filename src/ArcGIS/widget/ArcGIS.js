@@ -92,6 +92,8 @@ define([
                 // map is hosted on dsraenterprise2 NOT arcgis.com
                 arcgisUtils.arcgisUrl = "https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/sharing/content/items";
 
+                this.Map_Config = Map_Config;
+
                 arcgisUtils.createMap(mapid, "map").then(
                     dojo.hitch(this, function (response) {
 
@@ -186,8 +188,15 @@ define([
                         basemapGallery.startup();
                     }
 
-                        // clickable legend
-                        if (this.showLayerTools) {
+                        // layer tool bar
+                        
+                        // this line says:
+                        // is tool_layers defined in the JSON
+                        // if so, use that value.  if not, use the value from the XML config
+
+                        var showLayerTools_reconcile = ('undefined' !== typeof this.Map_Config.values.tool_layers) ? this.Map_Config.values.tool_layers : this.showLayerTools;
+                       
+                        if (showLayerTools_reconcile) {
                             var el = document.getElementsByClassName("layerTools")[0];
                             el.style.display = "block";
                             var myWidget = new LayerList({
