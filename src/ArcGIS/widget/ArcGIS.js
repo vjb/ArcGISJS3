@@ -153,12 +153,8 @@ define([
                         });
 
                         sources.push({
-
                             featureLayer: new FeatureLayer("https://dsraenterprise2.canadacentral.cloudapp.azure.com/server/rest/services/Hosted/ASSET_POINT/FeatureServer/0"),
-                
                             name: "ASSET_POINT",
-                           
-                            
                             enableSuggestions: true,
                             exactMatch: true,
                             "placeholder": "Enter Search Criterion",
@@ -166,9 +162,6 @@ define([
                             "maxSuggestions": 8,
                             "displayField": "site_identifier",
                             "suggestionTemplate": "Site: ${site_identifier}"
-
-
-
                         })
 
                         sources.push({
@@ -197,24 +190,24 @@ define([
 
                         search.startup();
 
-                        if (this.showBaseMaps){
+                        if (this.showBaseMaps) {
                             var el = document.getElementsByClassName("baseMaps")[0];
                             el.style.display = "block";
-                        var basemapGallery = new BasemapGallery({
-                            showArcGISBasemaps: true,
-                            map: response.map,
-                        }, "basemapGallery");
-                        basemapGallery.startup();
-                    }
+                            var basemapGallery = new BasemapGallery({
+                                showArcGISBasemaps: true,
+                                map: response.map,
+                            }, "basemapGallery");
+                            basemapGallery.startup();
+                        }
 
                         // layer tool bar
-                        
+
                         // this line says:
                         // is tool_layers defined in the JSON
                         // if so, use that value.  if not, use the value from the XML config
 
                         var showLayerTools_reconcile = ('undefined' !== typeof this.Map_Config.values.tool_layers) ? this.Map_Config.values.tool_layers : this.showLayerTools;
-                       
+
                         if (showLayerTools_reconcile) {
                             var el = document.getElementsByClassName("layerTools")[0];
                             el.style.display = "block";
@@ -231,18 +224,18 @@ define([
                         }, "HomeButton");
                         home.startup();
 
-                        if (this.showDrawTools){
+                        if (this.showDrawTools) {
                             var el = document.getElementsByClassName("drawTools")[0];
                             el.style.display = "block";
 
-                        var toolbar = new Draw(response.map);
-                        toolbar.on("draw-end", addToMap);
+                            var toolbar = new Draw(response.map);
+                            toolbar.on("draw-end", addToMap);
 
-                        // wire up the buttons (NEEDS BETTER SELECTOR!)
-                        document.querySelectorAll("#header button").forEach(function (d) {
-                            d.addEventListener("click", activateTool);
-                        })
-                    }
+                            // wire up the buttons (NEEDS BETTER SELECTOR!)
+                            document.querySelectorAll("#header button").forEach(function (d) {
+                                d.addEventListener("click", activateTool);
+                            })
+                        }
 
                         function activateTool() {
                             var tool = this.textContent.toUpperCase().replace(/ /g, "_");
