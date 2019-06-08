@@ -64,6 +64,9 @@ define([
                 "esri/dijit/Measurement",
                 "esri/toolbars/edit",
                 "dojo/_base/event",
+                "dojo/dom-construct",
+                "dojo/on",
+                "dojo/dom-class",
                 "dojo/parser",
                 "ArcGIS/config/mapConfig",
             ], dojo.hitch(this, function (Map,
@@ -86,6 +89,9 @@ define([
                 Measurement,
                 Edit,
                 event,
+                domConstruct,
+                on,
+                domClass,
                 parser,
                 Map_Config
             ) {
@@ -123,7 +129,7 @@ define([
                         function activateToolbar(graphic) {
 
 
-                            editToolbar.activate(0 | Edit.MOVE | Edit.ROTATE | Edit.SCALE , graphic);
+                            editToolbar.activate(0 | Edit.MOVE | Edit.ROTATE | Edit.SCALE, graphic);
                         }
 
 
@@ -140,12 +146,45 @@ define([
                             });
                         }
 
-                        /*
-                        var measurement = new Measurement({
-                            map: map
-                        }, "measurementDiv");
-                        measurement.startup();
-                        */
+                        if (this.showMeasureTools) {
+
+                            // 
+                            var el = document.getElementsByClassName("measureTools")[0];
+                            el.style.display = "block";
+
+                            // grab the measure tool container
+                            var measureToolContainer = document.getElementById("measureToolContainer");
+
+                            // create a node inside it for the measure tool
+                            var node = domConstruct.create("div");
+
+                            // place that node in the Dom as the first child of the container
+                            domConstruct.place(node, measureToolContainer, "first");
+
+                            // create and connect measure tool to its div (that lives in Mendix)
+                            var measurement = new Measurement({
+                                map: map
+                            }, node);
+
+                            // start up the tool 
+                            measurement.startup();
+
+                            on(el, "click", function () {
+
+                                domClass.toggle(this, "btn-clicked");
+
+                                var is_tool_visible = ("block" == measureToolContainer.style.display);
+
+                                if (is_tool_visible) {
+                                    measureToolContainer.style.display = "none";
+                                } else {
+                                    measureToolContainer.style.display = "block";
+                                }
+                            })
+                        }
+
+
+
 
                         // setup multi source search
                         var search = new Search({
@@ -210,6 +249,7 @@ define([
                             );
                             myWidget.startup();
                         }
+
                         var home = new HomeButton({
                             map: response.map
                         }, "HomeButton");

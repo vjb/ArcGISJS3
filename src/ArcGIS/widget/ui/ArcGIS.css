@@ -51,6 +51,21 @@
     margin-right: 10px;
 }
 
+.btn-clicked{
+  background-color: #0477af;
+}
+
+#measureToolContainer{
+  position: absolute;
+  right: 20px;
+  width: 400px;
+  height: 150px;
+  bottom: 60px;
+  background-color: #f8f8f8;
+  border-width: 5px;
+  border-color: darkgray
+}
+
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
