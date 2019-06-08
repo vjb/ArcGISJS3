@@ -106,6 +106,7 @@ define([
                         this._map = map;
                         this._response = response;
 
+                        // add Edit tool to make graphics movable
                         var editToolbar = new Edit(map);
 
                         //Activate the toolbar when you click on a graphic
@@ -121,8 +122,8 @@ define([
 
                         function activateToolbar(graphic) {
 
-                            
-                            editToolbar.activate(0 | Edit.MOVE, graphic);
+
+                            editToolbar.activate(0 | Edit.MOVE | Edit.ROTATE | Edit.SCALE , graphic);
                         }
 
 
