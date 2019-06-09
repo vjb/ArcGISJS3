@@ -74,6 +74,8 @@
   border-width: 5px;
   border-color: darkgray;
   z-index: 99;
+  padding: 10px;
+  outline: 5px #0595DB;
 }
 
 /* Dropdown Content (Hidden by Default) */
