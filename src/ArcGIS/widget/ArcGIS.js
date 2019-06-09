@@ -57,6 +57,7 @@ define([
                 "esri/dijit/LayerList",
                 "esri/dijit/HomeButton",
                 "esri/dijit/Bookmarks",
+                "esri/dijit/OverviewMap",
                 "esri/toolbars/draw",
                 "esri/graphic",
                 "esri/symbols/SimpleMarkerSymbol",
@@ -83,6 +84,7 @@ define([
                 LayerList,
                 HomeButton,
                 Bookmarks,
+                OverviewMap,
                 Draw,
                 Graphic,
                 SimpleMarkerSymbol,
@@ -114,8 +116,21 @@ define([
                         this._map = map;
                         this._response = response;
 
+                        // setup overview
+
+                        var overviewMapDijit = new OverviewMap({
+                            map: map,
+                            attachTo: "top-left",
+                            color:" #D84E13",
+                            opacity: .40
+                          });
+
+                          overviewMapDijit.startup();
+
+                        // set up legend 
+
                         var legendLayers = arcgisUtils.getLegendLayers(response);
-                     
+
                         var legendDijit = new Legend({
                           map: map,
                           layerInfos: legendLayers
@@ -123,8 +138,11 @@ define([
                      
                         legendDijit.startup();
                      
-              
+                        // setup bookmarks
 
+                        // the bookmarks are hardcoded below, but could be easily modified
+                        // to include pre-defined locations or, better yet, 
+                        // to let individual users save their own bookmarks
                         var bookmarks_list = [{
                             "extent": {
                                 "spatialReference": {
@@ -161,6 +179,7 @@ define([
                             }, document.getElementById('bookmarks'));
 
                         }
+                        
                         // add Edit tool to make graphics movable
                         var editToolbar = new Edit(map);
 
