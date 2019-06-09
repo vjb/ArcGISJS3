@@ -114,6 +114,17 @@ define([
                         this._map = map;
                         this._response = response;
 
+                        var legendLayers = arcgisUtils.getLegendLayers(response);
+                     
+                        var legendDijit = new Legend({
+                          map: map,
+                          layerInfos: legendLayers
+                        }, "legend");
+                     
+                        legendDijit.startup();
+                     
+              
+
                         var bookmarks_list = [{
                             "extent": {
                                 "spatialReference": {

@@ -66,6 +66,16 @@
   border-color: darkgray
 }
 
+#legendContainer{
+  position: absolute;
+  right: 20px;
+  bottom: 230px;
+  background-color: #f8f8f8;
+  border-width: 5px;
+  border-color: darkgray;
+  z-index: 99;
+}
+
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;

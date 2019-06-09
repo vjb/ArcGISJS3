@@ -2,12 +2,16 @@
 
 
     <div id="mapContainer">
+        <div id="legendContainer">
+            <div id="legend"></div>
+        </div>
         <div id="map"></div>
         <div id="search"></div>
+
         <div id="measureToolContainer" style="display: none;"></div>
         <div class="dropdownWrapper">
 
-         
+
 
             <div class="dropdown">
                 <button class="dropbtn layerTools" style="display: none;"><span
@@ -66,12 +70,12 @@
             </div>
 
             <div class="dropdown">
-                    <button class="dropbtn bookmarks" style="display: block;"><span
-                            class="esri-icon-favorites ico"></span>Favorites</button>
-                    <div class="dropdown-content">
-                        <div id="bookmarks"></div>
-                    </div>
+                <button class="dropbtn bookmarks" style="display: block;"><span
+                        class="esri-icon-favorites ico"></span>Favorites</button>
+                <div class="dropdown-content">
+                    <div id="bookmarks"></div>
                 </div>
+            </div>
 
             <div class="dropdown">
                 <button class="dropbtn measureTools" style="display: none;"><span
