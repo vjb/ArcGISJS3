@@ -56,6 +56,7 @@ define([
                 "esri/dijit/BasemapGallery",
                 "esri/dijit/LayerList",
                 "esri/dijit/HomeButton",
+                "esri/dijit/Bookmarks",
                 "esri/toolbars/draw",
                 "esri/graphic",
                 "esri/symbols/SimpleMarkerSymbol",
@@ -81,6 +82,7 @@ define([
                 BasemapGallery,
                 LayerList,
                 HomeButton,
+                Bookmarks,
                 Draw,
                 Graphic,
                 SimpleMarkerSymbol,
@@ -112,6 +114,42 @@ define([
                         this._map = map;
                         this._response = response;
 
+                        var bookmarks_list = [{
+                            "extent": {
+                                "spatialReference": {
+                                    "wkid": 102100
+                                },
+                                "xmin": -14201669,
+                                "ymin": 4642975,
+                                "xmax": -13021482,
+                                "ymax": 5278931
+                            },
+                            "name": "Northern California"
+                        }, {
+                            "extent": {
+                                "spatialReference": {
+                                    "wkid": 102100
+                                },
+                                "xmin": -8669334,
+                                "ymin": 4982379,
+                                "xmax": -8664724,
+                                "ymax": 4984864
+                            },
+                            "name": "Central Pennsylvania"
+                        }];
+
+                        if (this.showBookmarks) {
+
+                            var el = document.getElementsByClassName("bookmarks")[0];
+                            el.style.display = "block";
+
+                            var bookmarks = new Bookmarks({
+                                map: map,
+                                bookmarks: bookmarks_list,
+                                editable: true
+                            }, document.getElementById('bookmarks'));
+
+                        }
                         // add Edit tool to make graphics movable
                         var editToolbar = new Edit(map);
 

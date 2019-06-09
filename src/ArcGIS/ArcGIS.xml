@@ -29,5 +29,10 @@
          <category>Toolbars</category>
          <description>Show Measure Tools on the map.</description>
       </property>
+       <property key="showBookmarks" type="boolean" defaultValue="true">
+         <caption>Show Bookmarks</caption>
+         <category>Toolbars</category>
+         <description>Show Bookmark Tools on the map.</description>
+      </property>
    </properties>
 </widget>
