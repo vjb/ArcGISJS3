@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\ArcGIS\widget\ArcGIS.js - YUI ArcGIS</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="YUI ArcGIS" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Main.html">Main</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: src\ArcGIS\widget\ArcGIS.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+         * This is a hack to be able to document standalone functions for Yuidoc.
+         *
+         * @class Main
+         *
+         * */
+define([
+    &quot;dojo/_base/declare&quot;,
+    &quot;mxui/widget/_WidgetBase&quot;,
+    &quot;dijit/_TemplatedMixin&quot;,
+    &quot;mxui/dom&quot;,
+    &quot;dojo/dom&quot;,
+    &quot;dojo/dom-prop&quot;,
+    &quot;dojo/dom-geometry&quot;,
+    &quot;dojo/dom-class&quot;,
+    &quot;dojo/dom-style&quot;,
+    &quot;dojo/dom-construct&quot;,
+    &quot;dojo/_base/array&quot;,
+    &quot;dojo/_base/lang&quot;,
+    &quot;dojo/text&quot;,
+    &quot;dojo/html&quot;,
+    &quot;dojo/_base/event&quot;,
+    &quot;dojo/text!ArcGIS/widget/template/ArcGIS.html&quot;,
+    &quot;ArcGIS/config/ArcGIS_Dojo_Loader_Config&quot;,
+
+], function (declare, _WidgetBase, _TemplatedMixin, dom, dojoDom, dojoProp, dojoGeometry, dojoClass, dojoStyle, dojoConstruct, dojoArray, lang, dojoText, dojoHtml, dojoEvent, widgetTemplate, ArcGIS_Dojo_Loader_Config) {
+    &quot;use strict&quot;;
+
+    return declare(&quot;ArcGIS.widget.ArcGIS&quot;, [_WidgetBase, _TemplatedMixin], {
+
+        autoLoad: false,
+        timeout: 1000,
+        templateString: widgetTemplate,
+
+        widgetBase: null,
+
+        // Internal variables.
+        _handles: null,
+        _contextObj: null,
+        _map: null,
+
+        constructor: function () {
+            this._handles = [];
+
+        },
+
+        postCreate: function () {
+            logger.debug(this.id + &quot;.postCreate&quot;);
+
+            this.x = &quot;hi there from postcreate&quot;;
+
+            // Load a sample base map
+            require(ArcGIS_Dojo_Loader_Config, [&quot;esri/map&quot;,
+                &quot;esri/urlUtils&quot;,
+                &quot;esri/arcgis/utils&quot;,
+                &quot;esri/dijit/Legend&quot;,
+                &quot;esri/dijit/Scalebar&quot;,
+                &quot;dojo/text!esri/dijit/Search/templates/Search.html&quot;,
+                &quot;esri/dijit/Search&quot;,
+                &quot;esri/layers/FeatureLayer&quot;,
+                &quot;esri/InfoTemplate&quot;,
+                &quot;esri/dijit/BasemapGallery&quot;,
+                &quot;esri/dijit/LayerList&quot;,
+                &quot;esri/dijit/HomeButton&quot;,
+                &quot;esri/dijit/Bookmarks&quot;,
+                &quot;esri/dijit/OverviewMap&quot;,
+                &quot;esri/toolbars/draw&quot;,
+                &quot;esri/graphic&quot;,
+                &quot;esri/symbols/SimpleMarkerSymbol&quot;,
+                &quot;esri/symbols/SimpleLineSymbol&quot;,
+                &quot;esri/symbols/SimpleFillSymbol&quot;,
+                &quot;esri/dijit/Measurement&quot;,
+                &quot;esri/toolbars/edit&quot;,
+                &quot;dojo/_base/event&quot;,
+                &quot;dojo/dom-construct&quot;,
+                &quot;dojo/on&quot;,
+                &quot;dojo/dom-class&quot;,
+                &quot;dojo/parser&quot;,
+                &quot;ArcGIS/config/mapConfig&quot;,
+            ], dojo.hitch(this, function (Map,
+                urlUtils,
+                arcgisUtils,
+                Legend,
+                Scalebar,
+                _SearchTemplate,
+                Search,
+                FeatureLayer,
+                InfoTemplate,
+                BasemapGallery,
+                LayerList,
+                HomeButton,
+                Bookmarks,
+                OverviewMap,
+                Draw,
+                Graphic,
+                SimpleMarkerSymbol,
+                SimpleLineSymbol,
+                SimpleFillSymbol,
+                Measurement,
+                Edit,
+                event,
+                domConstruct,
+                on,
+                domClass,
+                parser,
+                Map_Config
+            ) {
+
+                // webmap for DSRA DP270
+
+
+                var mapid = &quot;02ca94fa08e243eaa250d7268194b3cf&quot;;
+
+                // map is hosted on dsraenterprise2 NOT arcgis.com
+                arcgisUtils.arcgisUrl = &quot;https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/sharing/content/items&quot;;
+
+                this.Map_Config = Map_Config;
+
+
+                arcgisUtils.createMap(mapid, &quot;map&quot;).then(
+                    dojo.hitch(this, function (response) {
+
+                        var map = response.map;
+
+                        this._map = map;
+                        this._response = response;
+
+                        // setup overview
+
+                        var overviewMapDijit = new OverviewMap({
+                            map: map,
+                            attachTo: &quot;top-left&quot;,
+                            color: &quot; #D84E13&quot;,
+                            opacity: .40
+                        });
+
+                        overviewMapDijit.startup();
+
+                        // set up legend 
+
+                        var legendLayers = arcgisUtils.getLegendLayers(response);
+
+                        var legendDijit = new Legend({
+                            map: map,
+                            layerInfos: legendLayers
+                        }, &quot;legend&quot;);
+
+                        legendDijit.startup();
+
+                        // setup bookmarks
+
+                        // the bookmarks are hardcoded below, but could be easily modified
+                        // to include pre-defined locations or, better yet, 
+                        // to let individual users save their own bookmarks
+                        var bookmarks_list = [{
+                            &quot;extent&quot;: {
+                                &quot;spatialReference&quot;: {
+                                    &quot;wkid&quot;: 102100
+                                },
+                                &quot;xmin&quot;: -14201669,
+                                &quot;ymin&quot;: 4642975,
+                                &quot;xmax&quot;: -13021482,
+                                &quot;ymax&quot;: 5278931
+                            },
+                            &quot;name&quot;: &quot;Northern California&quot;
+                        }, {
+                            &quot;extent&quot;: {
+                                &quot;spatialReference&quot;: {
+                                    &quot;wkid&quot;: 102100
+                                },
+                                &quot;xmin&quot;: -8669334,
+                                &quot;ymin&quot;: 4982379,
+                                &quot;xmax&quot;: -8664724,
+                                &quot;ymax&quot;: 4984864
+                            },
+                            &quot;name&quot;: &quot;Central Pennsylvania&quot;
+                        }];
+
+                        if (this.showBookmarks) {
+
+                            var el = document.getElementsByClassName(&quot;bookmarks&quot;)[0];
+                            el.style.display = &quot;block&quot;;
+
+                            var bookmarks = new Bookmarks({
+                                map: map,
+                                bookmarks: bookmarks_list,
+                                editable: true
+                            }, document.getElementById(&#x27;bookmarks&#x27;));
+
+                        }
+
+                        // add Edit tool to make graphics movable
+                        var editToolbar = new Edit(map);
+
+                        //Activate the toolbar when you click on a graphic
+                        map.graphics.on(&quot;click&quot;, function (evt) {
+                            event.stop(evt);
+                            activateToolbar(evt.graphic);
+                        });
+
+                        //deactivate the toolbar when you click outside a graphic
+                        map.on(&quot;click&quot;, function (evt) {
+                            editToolbar.deactivate();
+                        });
+
+                        function activateToolbar(graphic) {
+
+
+                            editToolbar.activate(0 | Edit.MOVE | Edit.ROTATE | Edit.SCALE, graphic);
+                        }
+
+
+                        // shouldn&#x27;t this be closer to the end?
+                        this.set(&quot;loaded&quot;, true);
+
+
+
+                        //add the scalebar
+                        if (false) {
+                            var scalebar = new Scalebar({
+                                map: map,
+                                scalebarUnit: &quot;english&quot;
+                            });
+                        }
+
+                        if (this.showMeasureTools) {
+
+                            // 
+                            var el = document.getElementsByClassName(&quot;measureTools&quot;)[0];
+                            el.style.display = &quot;block&quot;;
+
+                            // grab the measure tool container
+                            var measureToolContainer = document.getElementById(&quot;measureToolContainer&quot;);
+
+                            // create a node inside it for the measure tool
+                            var node = domConstruct.create(&quot;div&quot;);
+
+                            // place that node in the Dom as the first child of the container
+                            domConstruct.place(node, measureToolContainer, &quot;first&quot;);
+
+                            // create and connect measure tool to its div (that lives in Mendix)
+                            var measurement = new Measurement({
+                                map: map
+                            }, node);
+
+                            // start up the tool 
+                            measurement.startup();
+
+                            on(el, &quot;click&quot;, function () {
+
+                                domClass.toggle(this, &quot;btn-clicked&quot;);
+
+                                var is_tool_visible = (&quot;block&quot; == measureToolContainer.style.display);
+
+                                if (is_tool_visible) {
+                                    measureToolContainer.style.display = &quot;none&quot;;
+                                } else {
+                                    measureToolContainer.style.display = &quot;block&quot;;
+                                }
+                            })
+                        }
+
+
+
+                        /**
+                         Configures Search Object
+                        @function Search
+                        @param {Object} bounds The original bounds.
+                        @param {number} dx X  offset.
+                        @param {number} dy Y  offset.
+                        @return {Object} The newly calculated bounds.
+                        @example
+                           model.set(&#x27;foo&#x27;, &#x27;bar&#x27;);
+                        */
+                        var search = new Search({
+                            map: response.map,
+                            enableButtonMode: true,
+                            showInfoWindowOnSelect: true,
+                            enableInfoWindow: true
+                        }, &quot;search&quot;);
+
+                        //Set the sources for the search widget
+
+                        // note: this line will automatically add the default GEO services
+                        var sources = search.get(&quot;sources&quot;);
+
+                        // loop over the search config objects (defined in the JSON)
+                        var searchSources = this.Map_Config.values.searchConfig.sources;
+                        var numberOfSources = searchSources.length;
+
+                        for (var i = 0; i &lt; numberOfSources; i++) {
+                            var source = searchSources[i];
+                            // only care about feature layers (default GEO already there)
+                            if (&#x27;undefined&#x27; == typeof source.flayerId) {
+                                continue;
+                            }
+
+                            var fl = new FeatureLayer(source.url);
+                            source.featureLayer = fl;
+                            sources.push(source);
+                        }
+
+                        //Set the sources above to the search widget
+                        search.set(&quot;sources&quot;, sources);
+
+                        search.startup();
+
+                        if (this.showBaseMaps) {
+                            var el = document.getElementsByClassName(&quot;baseMaps&quot;)[0];
+                            el.style.display = &quot;block&quot;;
+                            var basemapGallery = new BasemapGallery({
+                                showArcGISBasemaps: true,
+                                map: response.map,
+                            }, &quot;basemapGallery&quot;);
+                            basemapGallery.startup();
+                        }
+
+                        // layer tool bar
+
+                        // this line says:
+                        // is tool_layers defined in the JSON
+                        // if so, use that value.  if not, use the value from the XML config
+
+                        var showLayerTools_reconcile = (&#x27;undefined&#x27; !== typeof this.Map_Config.values.tool_layers) ? this.Map_Config.values.tool_layers : this.showLayerTools;
+
+                        if (showLayerTools_reconcile) {
+                            var el = document.getElementsByClassName(&quot;layerTools&quot;)[0];
+                            el.style.display = &quot;block&quot;;
+                            var myWidget = new LayerList({
+                                    map: response.map,
+                                    layers: arcgisUtils.getLayerList(response)
+                                },
+                                &quot;layerList&quot;
+                            );
+                            myWidget.startup();
+                        }
+
+                        var home = new HomeButton({
+                            map: response.map
+                        }, &quot;HomeButton&quot;);
+                        home.startup();
+
+                        if (this.showDrawTools) {
+                            var el = document.getElementsByClassName(&quot;drawTools&quot;)[0];
+                            el.style.display = &quot;block&quot;;
+
+                            var toolbar = new Draw(response.map);
+                            toolbar.on(&quot;draw-end&quot;, addToMap);
+
+                            // wire up the buttons (NEEDS BETTER SELECTOR!)
+                            document.querySelectorAll(&quot;#header button&quot;).forEach(function (d) {
+                                d.addEventListener(&quot;click&quot;, activateTool);
+                            })
+                        }
+
+                        function activateTool() {
+                            var tool = this.textContent.toUpperCase().replace(/ /g, &quot;_&quot;);
+                            toolbar.activate(Draw[tool]);
+                            response.map.hideZoomSlider();
+
+                        }
+
+                        function addToMap(evt) {
+                            var symbol;
+                            toolbar.deactivate();
+                            response.map.showZoomSlider();
+
+                            switch (evt.geometry.type) {
+                                case &quot;point&quot;:
+                                case &quot;multipoint&quot;:
+                                    symbol = new SimpleMarkerSymbol();
+                                    break;
+                                case &quot;polyline&quot;:
+                                    symbol = new SimpleLineSymbol();
+                                    break;
+                                default:
+                                    symbol = new SimpleFillSymbol();
+                                    break;
+                            }
+                            var graphic = new Graphic(evt.geometry, symbol);
+                            response.map.graphics.add(graphic);
+                        }
+
+                    }));
+
+            }))
+        },
+
+        
+        update: function (obj, callback) {
+            logger.debug(this.id + &quot;.update&quot;);
+            this._contextObj = obj;
+
+            // set zoom level to current zoom level
+            this._contextObj.set(&quot;CurrentZoomLevel&quot;, this._map.getZoom());
+
+            // hook up listener to zoom-end event
+
+            this._map.on(&quot;zoom-end&quot;, dojo.hitch(this, function () {
+                this._contextObj.set(&quot;CurrentZoomLevel&quot;, this._map.getZoom());
+
+            }))
+
+            //after map loads, connect to listen to mouse move &amp; drag events
+            this._map.on(&quot;mouse-move&quot;, dojo.hitch(this, showCoordinates));
+
+            // connect arcgis objects to Mendix entities
+            this._response.itemInfo.itemData.operationalLayers[0].layerObject.on(&quot;click&quot;, dojo.hitch(this, function (evt) {
+
+                this._contextObj.set(&quot;GlobalID&quot;, evt.graphic.attributes.globalid);
+                this._contextObj.set(&quot;AssetAsJSON&quot;, JSON.stringify(evt.graphic.attributes, null, 2));
+            }));
+
+            /**
+             * Fired when mouse moves 
+             *
+             * @event mouse-move
+             */
+            function showCoordinates(evt) {
+                //the map is in web mercator but display coordinates in geographic (lat, long)
+                require(ArcGIS_Dojo_Loader_Config, [&quot;esri/geometry/webMercatorUtils&quot;], dojo.hitch(this, function (webMercatorUtils) {
+                    var mp = webMercatorUtils.webMercatorToGeographic(evt.mapPoint);
+                    this._contextObj.set(&quot;MouseLat&quot;, mp.y.toFixed(8));
+                    this._contextObj.set(&quot;MouseLon&quot;, mp.x.toFixed(8));
+                }));
+                //display mouse coordinates
+
+            }
+
+            this._resetSubscriptions();
+            this._updateRendering(callback);
+        },
+
+        _resetSubscriptions: function () {
+            var _objectHandle = null,
+                _attrHandle = null,
+                _validationHandle = null;
+            // Release handles on previous object, if any.
+            if (this._handles) {
+                this._handles.forEach(function (handle, i) {
+                    mx.data.unsubscribe(handle);
+                });
+                this._handles = [];
+            }
+            // When a mendix object exists create subscribtions.
+            if (this._contextObj) {
+
+                _objectHandle = this.subscribe({
+                    guid: this._contextObj.getGuid(),
+                    callback: dojo.hitch(this, function (guid) {
+
+                        console.log(&quot;context entity has updated&quot;);
+
+                        /*
+                        require(ArcGIS_Dojo_Loader_Config, [&quot;esri/geometry/Point&quot;, &quot;esri/SpatialReference&quot;], dojo.hitch(this, function (Point, SpatialReference) {
+                            var p = new Point(parseFloat(this._contextObj.get(&quot;ZoomToLon&quot;)), parseFloat(this._contextObj.get(&quot;ZoomToLat&quot;)), new SpatialReference({
+                                wkid: 4326
+                            }));
+                            this._map.centerAndZoom(p, 16);
+
+                            //this._updateRendering();
+                        }))
+                        */
+
+
+                    })
+                });
+
+                var subscription = this.subscribe({
+                    guid: this._contextObj.getGuid(),
+                    attr: &quot;Switch_ZoomToLatLon&quot;,
+                    callback: dojo.hitch(function (guid, attr, value) {
+                        console.log(&quot;Object with guid &quot; + guid + &quot; had its attribute &quot; +
+                            attr + &quot; change to &quot; + value);
+
+                        require(ArcGIS_Dojo_Loader_Config, [&quot;esri/geometry/Point&quot;, &quot;esri/SpatialReference&quot;], dojo.hitch(this, function (Point, SpatialReference) {
+                            var p = new Point(parseFloat(this._contextObj.get(&quot;ZoomToLon&quot;)), parseFloat(this._contextObj.get(&quot;ZoomToLat&quot;)), new SpatialReference({
+                                wkid: 4326
+                            }));
+                            this._map.centerAndZoom(p, 16);
+
+                            //this._updateRendering();
+                        }))
+
+
+                    })
+                });
+
+                var subscription = this.subscribe({
+                    guid: this._contextObj.getGuid(),
+                    attr: &quot;Switch_ZoomToGlobalID&quot;,
+                    callback: dojo.hitch(function (guid, attr, value) {
+                        console.log(&quot;Object with guid &quot; + guid + &quot; had its attribute &quot; +
+                            attr + &quot; change to &quot; + value);
+
+                        require(ArcGIS_Dojo_Loader_Config, [&quot;esri/tasks/QueryTask&quot;, &quot;esri/tasks/query&quot;, &quot;esri/SpatialReference&quot;], dojo.hitch(this, function (QueryTask, Query, SpatialReference) {
+                            var query = new Query();
+                            var queryTask = new QueryTask(&quot;https://dsraenterprise2.canadacentral.cloudapp.azure.com/server/rest/services/Hosted/ASSET_POINT/FeatureServer/0&quot;);
+                            var spatialRef = new SpatialReference({
+                                wkid: 4326
+                            });
+
+                            function queryTaskExecuteCompleteHandler(queryResults) {
+                                console.log(&quot;complete&quot;, queryResults);
+                            }
+
+                            function queryTaskErrorHandler(queryError) {
+                                console.log(&quot;error&quot;, queryError.error.details);
+                            }
+
+                            query.outFields = [&quot;*&quot;];
+                            query.returnGeometry = true;
+                            query.where = &quot;globalid=&#x27;&quot; + this._contextObj.get(&quot;ZoomToGlobalId&quot;) + &quot;&#x27;&quot;;
+                            query.outSpatialReference = spatialRef;
+                            //query.like(&quot;{5FD85F2B-3D34-4E5B-8551-0344EA35BCA6}&quot;)
+                            //query.where(&quot;objectid=&#x27;10&#x27;&quot;);
+                            queryTask.on(&quot;complete&quot;, queryTaskExecuteCompleteHandler);
+                            queryTask.on(&quot;error&quot;, queryTaskErrorHandler);
+                            queryTask.execute(query);
+
+                        }))
+
+
+
+                    })
+                });
+
+
+
+                var subscription = this.subscribe({
+                    guid: this._contextObj.getGuid(),
+                    attr: &quot;CurrentZoomLevel&quot;,
+                    callback: dojo.hitch(function (guid, attr, value) {
+                        console.log(&quot;Object with guid &quot; + guid + &quot; had its attribute &quot; +
+                            attr + &quot; change to &quot; + value);
+
+                        this._map.setZoom(value);
+
+
+
+                    })
+                });
+
+                this._handles = [_objectHandle, subscription];
+            }
+        },
+
+        resize: function (box) {
+            logger.debug(this.id + &quot;.resize&quot;);
+        },
+
+        uninitialize: function () {
+            logger.debug(this.id + &quot;.uninitialize&quot;);
+        },
+
+        _updateRendering: function (callback) {
+            logger.debug(this.id + &quot;._updateRendering&quot;);
+
+            if (this._contextObj !== null) {
+                dojoStyle.set(this.domNode, &quot;display&quot;, &quot;block&quot;);
+            } else {
+                dojoStyle.set(this.domNode, &quot;display&quot;, &quot;none&quot;);
+            }
+
+            this._executeCallback(callback, &quot;_updateRendering&quot;);
+        },
+
+        // Shorthand for running a microflow
+        _execMf: function (mf, guid, cb) {
+            logger.debug(this.id + &quot;._execMf&quot;);
+            if (mf &amp;&amp; guid) {
+                mx.ui.action(mf, {
+                    params: {
+                        applyto: &quot;selection&quot;,
+                        guids: [guid]
+                    },
+                    callback: lang.hitch(this, function (objs) {
+                        if (cb &amp;&amp; typeof cb === &quot;function&quot;) {
+                            cb(objs);
+                        }
+                    }),
+                    error: function (error) {
+                        console.debug(error.description);
+                    }
+                }, this);
+            }
+        },
+
+        // Shorthand for executing a callback, adds logging to your inspector
+        _executeCallback: function (cb, from) {
+            logger.debug(this.id + &quot;._executeCallback&quot; + (from ? &quot; from &quot; + from : &quot;&quot;));
+            if (cb &amp;&amp; typeof cb === &quot;function&quot;) {
+                cb();
+            }
+        }
+    });
+});
+
+require([&quot;ArcGIS/widget/ArcGIS&quot;]);
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

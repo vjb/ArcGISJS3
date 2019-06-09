@@ -1,3 +1,9 @@
+/**
+ * This is a hack to be able to document standalone functions for Yuidoc.
+ *
+ * @class Main
+ *
+ * */
 define([
     "dojo/_base/declare",
     "mxui/widget/_WidgetBase",
@@ -101,12 +107,15 @@ define([
             ) {
 
                 // webmap for DSRA DP270
+
+
                 var mapid = "02ca94fa08e243eaa250d7268194b3cf";
 
                 // map is hosted on dsraenterprise2 NOT arcgis.com
                 arcgisUtils.arcgisUrl = "https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/sharing/content/items";
 
                 this.Map_Config = Map_Config;
+
 
                 arcgisUtils.createMap(mapid, "map").then(
                     dojo.hitch(this, function (response) {
@@ -121,23 +130,23 @@ define([
                         var overviewMapDijit = new OverviewMap({
                             map: map,
                             attachTo: "top-left",
-                            color:" #D84E13",
+                            color: " #D84E13",
                             opacity: .40
-                          });
+                        });
 
-                          overviewMapDijit.startup();
+                        overviewMapDijit.startup();
 
                         // set up legend 
 
                         var legendLayers = arcgisUtils.getLegendLayers(response);
 
                         var legendDijit = new Legend({
-                          map: map,
-                          layerInfos: legendLayers
+                            map: map,
+                            layerInfos: legendLayers
                         }, "legend");
-                     
+
                         legendDijit.startup();
-                     
+
                         // setup bookmarks
 
                         // the bookmarks are hardcoded below, but could be easily modified
@@ -179,7 +188,7 @@ define([
                             }, document.getElementById('bookmarks'));
 
                         }
-                        
+
                         // add Edit tool to make graphics movable
                         var editToolbar = new Edit(map);
 
@@ -253,8 +262,16 @@ define([
 
 
 
-
-                        // setup multi source search
+                        /**
+                         Configures Search Object
+                        @function Search
+                        @param {Object} bounds The original bounds.
+                        @param {number} dx X  offset.
+                        @param {number} dy Y  offset.
+                        @return {Object} The newly calculated bounds.
+                        @example
+                           model.set('foo', 'bar');
+                        */
                         var search = new Search({
                             map: response.map,
                             enableButtonMode: true,
@@ -369,6 +386,7 @@ define([
             }))
         },
 
+
         update: function (obj, callback) {
             logger.debug(this.id + ".update");
             this._contextObj = obj;
@@ -393,6 +411,11 @@ define([
                 this._contextObj.set("AssetAsJSON", JSON.stringify(evt.graphic.attributes, null, 2));
             }));
 
+            /**
+             * Fired when mouse moves 
+             *
+             * @event mouse-move
+             */
             function showCoordinates(evt) {
                 //the map is in web mercator but display coordinates in geographic (lat, long)
                 require(ArcGIS_Dojo_Loader_Config, ["esri/geometry/webMercatorUtils"], dojo.hitch(this, function (webMercatorUtils) {

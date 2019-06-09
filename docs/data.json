@@ -1,0 +1,611 @@
+{
+    "project": {
+        "name": "YUI ArcGIS",
+        "description": "YUI Configuration to Auto-Generate Docs for ArcGIS Widget",
+        "version": "0.0.1",
+        "url": "http://mendix.com/"
+    },
+    "files": {
+        "src\\ArcGIS\\widget\\ArcGIS.js": {
+            "name": "src\\ArcGIS\\widget\\ArcGIS.js",
+            "modules": {},
+            "classes": {
+                "Main": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "test\\deployment\\data\\tmp\\dojo\\dijit\\_editor\\RichText.js": {
+            "name": "test\\deployment\\data\\tmp\\dojo\\dijit\\_editor\\RichText.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "test\\deployment\\data\\tmp\\dojo\\dijit\\form\\_FormMixin.js": {
+            "name": "test\\deployment\\data\\tmp\\dojo\\dijit\\form\\_FormMixin.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "test\\deployment\\data\\tmp\\dojo\\dojo\\OpenAjax.js": {
+            "name": "test\\deployment\\data\\tmp\\dojo\\dojo\\OpenAjax.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "test\\deployment\\data\\tmp\\dojo\\dojox\\date\\hebrew\\Date.js": {
+            "name": "test\\deployment\\data\\tmp\\dojo\\dojox\\date\\hebrew\\Date.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "test\\deployment\\data\\tmp\\dojo\\dojox\\date\\timezone.js": {
+            "name": "test\\deployment\\data\\tmp\\dojo\\dojox\\date\\timezone.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js": {
+            "name": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "test\\deployment\\web\\widgets\\HTMLSnippet\\widget\\HTMLSnippet.js": {
+            "name": "test\\deployment\\web\\widgets\\HTMLSnippet\\widget\\HTMLSnippet.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gulpfile.js": {
+            "name": "Gulpfile.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Main": {
+            "name": "Main",
+            "shortname": "Main",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src\\ArcGIS\\widget\\ArcGIS.js",
+            "line": 1,
+            "description": "This is a hack to be able to document standalone functions for Yuidoc."
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "src\\ArcGIS\\widget\\ArcGIS.js",
+            "line": 265,
+            "description": "Configures Search Object",
+            "itemtype": "method",
+            "name": "Search",
+            "params": [
+                {
+                    "name": "bounds",
+                    "description": "The original bounds.",
+                    "type": "Object"
+                },
+                {
+                    "name": "dx",
+                    "description": "X  offset.",
+                    "type": "Number"
+                },
+                {
+                    "name": "dy",
+                    "description": "Y  offset.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The newly calculated bounds.",
+                "type": "Object"
+            },
+            "example": [
+                "\n  model.set('foo', 'bar');"
+            ],
+            "class": "Main"
+        },
+        {
+            "file": "src\\ArcGIS\\widget\\ArcGIS.js",
+            "line": 414,
+            "description": "Fired when mouse moves",
+            "itemtype": "event",
+            "name": "mouse-move",
+            "class": "Main"
+        },
+        {
+            "file": "test\\deployment\\data\\tmp\\dojo\\dijit\\_editor\\RichText.js",
+            "line": 1881,
+            "description": "The following functions implement HTML manipulation commands for various\nbrowser/contentEditable implementations.  The goal of them is to enforce\nstandard behaviors of them.",
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\data\\tmp\\dojo\\dijit\\_editor\\RichText.js",
+            "line": 1887,
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\data\\tmp\\dojo\\dijit\\_editor\\RichText.js",
+            "line": 2024,
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\data\\tmp\\dojo\\dijit\\form\\_FormMixin.js",
+            "line": 138,
+            "description": "TODO: code for plain input boxes (this shouldn't run for inputs that are part of widgets)\n\n\t\tarray.forEach(this.containerNode.elements, function(element){\n\t\t\tif(element.name == ''){return};\t// like \"continue\"\n\t\t\tvar namePath = element.name.split(\".\");\n\t\t\tvar myObj=obj;\n\t\t\tvar name=namePath[namePath.length-1];\n\t\t\tfor(var j=1,len2=namePath.length;j<len2;++j){\n\t\t\t\tvar p=namePath[j - 1];\n\t\t\t\t// repeater support block\n\t\t\t\tvar nameA=p.split(\"[\");\n\t\t\t\tif(nameA.length > 1){\n\t\t\t\t\tif(typeof(myObj[nameA[0]]) == \"undefined\"){\n\t\t\t\t\t\tmyObj[nameA[0]]=[ ];\n\t\t\t\t\t} // if\n\n\t\t\t\t\tnameIndex=parseInt(nameA[1]);\n\t\t\t\t\tif(typeof(myObj[nameA[0]][nameIndex]) == \"undefined\"){\n\t\t\t\t\t\tmyObj[nameA[0]][nameIndex] = { };\n\t\t\t\t\t}\n\t\t\t\t\tmyObj=myObj[nameA[0]][nameIndex];\n\t\t\t\t\tcontinue;\n\t\t\t\t} // repeater support ends\n\n\t\t\t\tif(typeof(myObj[p]) == \"undefined\"){\n\t\t\t\t\tmyObj=undefined;\n\t\t\t\t\tbreak;\n\t\t\t\t};\n\t\t\t\tmyObj=myObj[p];\n\t\t\t}\n\n\t\t\tif(typeof(myObj) == \"undefined\"){\n\t\t\t\treturn;\t\t// like \"continue\"\n\t\t\t}\n\t\t\tif(typeof(myObj[name]) == \"undefined\" && this.ignoreNullValues){\n\t\t\t\treturn;\t\t// like \"continue\"\n\t\t\t}\n\n\t\t\t// TODO: widget values (just call set('value', ...) on the widget)\n\n\t\t\t// TODO: maybe should call dojo.getNodeProp() instead\n\t\t\tswitch(element.type){\n\t\t\t\tcase \"checkbox\":\n\t\t\t\t\telement.checked = (name in myObj) &&\n\t\t\t\t\t\tarray.some(myObj[name], function(val){ return val == element.value; });\n\t\t\t\t\tbreak;\n\t\t\t\tcase \"radio\":\n\t\t\t\t\telement.checked = (name in myObj) && myObj[name] == element.value;\n\t\t\t\t\tbreak;\n\t\t\t\tcase \"select-multiple\":\n\t\t\t\t\telement.selectedIndex=-1;\n\t\t\t\t\tarray.forEach(element.options, function(option){\n\t\t\t\t\t\toption.selected = array.some(myObj[name], function(val){ return option.value == val; });\n\t\t\t\t\t});\n\t\t\t\t\tbreak;\n\t\t\t\tcase \"select-one\":\n\t\t\t\t\telement.selectedIndex=\"0\";\n\t\t\t\t\tarray.forEach(element.options, function(option){\n\t\t\t\t\t\toption.selected = option.value == myObj[name];\n\t\t\t\t\t});\n\t\t\t\t\tbreak;\n\t\t\t\tcase \"hidden\":\n\t\t\t\tcase \"text\":\n\t\t\t\tcase \"textarea\":\n\t\t\t\tcase \"password\":\n\t\t\t\t\telement.value = myObj[name] || \"\";\n\t\t\t\t\tbreak;\n\t\t\t}\n\t\t});",
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\data\\tmp\\dojo\\dijit\\form\\_FormMixin.js",
+            "line": 281,
+            "description": "code for plain input boxes (see also domForm.formToObject, can we use that instead of this code?\nbut it doesn't understand [] notation, presumably)\n\t\t\tvar obj = { };\n\t\t\tarray.forEach(this.containerNode.elements, function(elm){\n\t\t\t\tif(!elm.name)\t{\n\t\t\t\t\treturn;\t\t// like \"continue\"\n\t\t\t\t}\n\t\t\t\tvar namePath = elm.name.split(\".\");\n\t\t\t\tvar myObj=obj;\n\t\t\t\tvar name=namePath[namePath.length-1];\n\t\t\t\tfor(var j=1,len2=namePath.length;j<len2;++j){\n\t\t\t\t\tvar nameIndex = null;\n\t\t\t\t\tvar p=namePath[j - 1];\n\t\t\t\t\tvar nameA=p.split(\"[\");\n\t\t\t\t\tif(nameA.length > 1){\n\t\t\t\t\t\tif(typeof(myObj[nameA[0]]) == \"undefined\"){\n\t\t\t\t\t\t\tmyObj[nameA[0]]=[ ];\n\t\t\t\t\t\t} // if\n\t\t\t\t\t\tnameIndex=parseInt(nameA[1]);\n\t\t\t\t\t\tif(typeof(myObj[nameA[0]][nameIndex]) == \"undefined\"){\n\t\t\t\t\t\t\tmyObj[nameA[0]][nameIndex] = { };\n\t\t\t\t\t\t}\n\t\t\t\t\t}else if(typeof(myObj[nameA[0]]) == \"undefined\"){\n\t\t\t\t\t\tmyObj[nameA[0]] = { }\n\t\t\t\t\t} // if\n\n\t\t\t\t\tif(nameA.length == 1){\n\t\t\t\t\t\tmyObj=myObj[nameA[0]];\n\t\t\t\t\t}else{\n\t\t\t\t\t\tmyObj=myObj[nameA[0]][nameIndex];\n\t\t\t\t\t} // if\n\t\t\t\t} // for\n\n\t\t\t\tif((elm.type != \"select-multiple\" && elm.type != \"checkbox\" && elm.type != \"radio\") || (elm.type == \"radio\" && elm.checked)){\n\t\t\t\t\tif(name == name.split(\"[\")[0]){\n\t\t\t\t\t\tmyObj[name]=elm.value;\n\t\t\t\t\t}else{\n\t\t\t\t\t\t// can not set value when there is no name\n\t\t\t\t\t}\n\t\t\t\t}else if(elm.type == \"checkbox\" && elm.checked){\n\t\t\t\t\tif(typeof(myObj[name]) == 'undefined'){\n\t\t\t\t\t\tmyObj[name]=[ ];\n\t\t\t\t\t}\n\t\t\t\t\tmyObj[name].push(elm.value);\n\t\t\t\t}else if(elm.type == \"select-multiple\"){\n\t\t\t\t\tif(typeof(myObj[name]) == 'undefined'){\n\t\t\t\t\t\tmyObj[name]=[ ];\n\t\t\t\t\t}\n\t\t\t\t\tfor(var jdx=0,len3=elm.options.length; jdx<len3; ++jdx){\n\t\t\t\t\t\tif(elm.options[jdx].selected){\n\t\t\t\t\t\t\tmyObj[name].push(elm.options[jdx].value);\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t} // if\n\t\t\t\tname=undefined;\n\t\t\t}); // forEach",
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\data\\tmp\\dojo\\dojo\\OpenAjax.js",
+            "line": 1,
+            "description": "OpenAjax.js\n\nReference implementation of the OpenAjax Hub, as specified by OpenAjax Alliance.\nSpecification is under development at:\n\n  http://www.openajax.org/member/wiki/OpenAjax_Hub_Specification\n\nCopyright 2006-2007 OpenAjax Alliance\n\nLicensed under the Apache License, Version 2.0 (the \"License\"); you may not\nuse this file except in compliance with the License. You may obtain a copy\nof the License at http://www.apache.org/licenses/LICENSE-2.0 . Unless\nrequired by applicable law or agreed to in writing, software distributed\nunder the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\nCONDITIONS OF ANY KIND, either express or implied. See the License for the\nspecific language governing permissions and limitations under the License.",
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\data\\tmp\\dojo\\dojox\\date\\hebrew\\Date.js",
+            "line": 41,
+            "description": "The lengths of the Hebrew months.  This is complicated, because there\nare three different types of years, or six if you count leap years.\nDue to the rules for postponing the start of the year to avoid having\ncertain holidays fall on the sabbath, the year can end up being three\ndifferent lengths, called \"deficient\", \"normal\", and \"complete\".",
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\data\\tmp\\dojo\\dojox\\date\\hebrew\\Date.js",
+            "line": 68,
+            "description": "The cumulative # of days to the end of each month in a non-leap year\nAlthough this can be calculated from the MONTH_LENGTH table,\nkeeping it around separately makes some calculations a lot faster",
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\data\\tmp\\dojo\\dojox\\date\\hebrew\\Date.js",
+            "line": 91,
+            "description": "The cumulative # of days to the end of each month in a leap year",
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\data\\tmp\\dojo\\dojox\\date\\timezone.js",
+            "line": 1,
+            "description": "Dojo port of fleegix date plugin from\n\n  http://js.fleegix.org/plugins/date/date\n\ncontributed to Dojo under CLA, with thanks to Matthew Eernisse (mde@fleegix.org)\nand Open Source Applications Foundation\n\nCredits: Ideas included from incomplete JS implementation of Olson\nparser, \"XMLDate\" by Philippe Goetz (philippe.goetz@wanadoo.fr)",
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 44,
+            "description": "Refactored:\npassing the primitive value 'true' to the factory function\nwill make the code on line #10457 unreachable, and thus 'jQuery' won't be assigned \nto the window object, & it won't be globaly available, and that's fine in our case \nas we are going to inject this version of jQuery (v3.3.1) as the context of the\nimmediate function that wraps the user's code, and make its identifiers ($, jQuery) only available in that anonymous wrapper function scope,\nand by that we make sure that this version of jQuery doesn't interfer with any other jQuery versions in out app.",
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 866,
+            "description": "Create key-value caches of limited size",
+            "return": {
+                "description": "Returns the Object data after storing it on itself with\n\tproperty name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n\tdeleting the oldest entry",
+                "type": "Function(string, object)"
+            },
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 886,
+            "description": "Mark a function for special use by Sizzle",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to mark",
+                    "type": "Function"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 895,
+            "description": "Support testing using an element",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "Passed the created element and returns a boolean result",
+                    "type": "Function"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 916,
+            "description": "Adds the same handler for all of the specified attrs",
+            "params": [
+                {
+                    "name": "attrs",
+                    "description": "Pipe-separated list of attributes",
+                    "type": "String"
+                },
+                {
+                    "name": "handler",
+                    "description": "The method that will be applied",
+                    "type": "Function"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 930,
+            "description": "Checks document order of two siblings",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "",
+                    "type": "Element"
+                },
+                {
+                    "name": "b",
+                    "description": "",
+                    "type": "Element"
+                }
+            ],
+            "return": {
+                "description": "Returns less than 0 if a precedes b, greater than 0 if a follows b",
+                "type": "Number"
+            },
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 958,
+            "description": "Returns a function to use in pseudos for input types",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 969,
+            "description": "Returns a function to use in pseudos for buttons",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 980,
+            "description": "Returns a function to use in pseudos for :enabled/:disabled",
+            "params": [
+                {
+                    "name": "disabled",
+                    "description": "true for :disabled; false for :enabled",
+                    "type": "Boolean"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 1036,
+            "description": "Returns a function to use in pseudos for positionals",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 1058,
+            "description": "Checks a node for validity as a Sizzle context",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "",
+                    "type": "Element|Object="
+                }
+            ],
+            "return": {
+                "description": "The input node if acceptable, otherwise a falsy value",
+                "type": "Element|Object|Boolean"
+            },
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 1070,
+            "description": "Detects XML nodes",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "An element or a document",
+                    "type": "Element|Object"
+                }
+            ],
+            "return": {
+                "description": "True iff elem is a non-HTML XML node",
+                "type": "Boolean"
+            },
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 1082,
+            "description": "Sets document-related variables once based on the current document",
+            "params": [
+                {
+                    "name": "doc",
+                    "description": "An element or document object to use to set the document",
+                    "type": "Element|Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Returns the current document",
+                "type": "Object"
+            },
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 1562,
+            "description": "Document sorting and removing duplicates",
+            "params": [
+                {
+                    "name": "results",
+                    "description": "",
+                    "type": "ArrayLike"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 1595,
+            "description": "Utility function for retrieving the text value of an array of DOM nodes",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "",
+                    "type": "Array|Element"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 2649,
+            "description": "A low-level selection function that works with Sizzle's compiled\n selector functions",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "A selector or a pre-compiled\n selector function built with Sizzle.compile",
+                    "type": "String|Function"
+                },
+                {
+                    "name": "context",
+                    "description": "",
+                    "type": "Element"
+                },
+                {
+                    "name": "results",
+                    "description": "",
+                    "type": "Array",
+                    "optional": true
+                },
+                {
+                    "name": "seed",
+                    "description": "A set of elements to match against",
+                    "type": "Array",
+                    "optional": true
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 9935,
+            "description": "Load a url into a page",
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js",
+            "line": 10433,
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\widget\\HTMLSnippet.js",
+            "line": 173,
+            "class": ""
+        },
+        {
+            "file": "test\\deployment\\web\\widgets\\HTMLSnippet\\widget\\HTMLSnippet.js",
+            "line": 179,
+            "description": "user's are get used to or might expect to have jQuery available globaly\nand they will write their code according to that, and since we, in this widget, don't expose \njQuery globaly, we'll check user's code snippet if there is any attemption to access jQuery \nfrom the global scope ( window ).",
+            "class": ""
+        },
+        {
+            "file": "Gulpfile.js",
+            "line": 9,
+            "description": "Do not edit anything below, unless you know what you are doing",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: function with method",
+            "line": " src\\ArcGIS\\widget\\ArcGIS.js:265"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:866"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:930"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:1058"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:1070"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:1082"
+        },
+        {
+            "message": "Missing item type\nThe following functions implement HTML manipulation commands for various\nbrowser/contentEditable implementations.  The goal of them is to enforce\nstandard behaviors of them.",
+            "line": " test\\deployment\\data\\tmp\\dojo\\dijit\\_editor\\RichText.js:1881"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test\\deployment\\data\\tmp\\dojo\\dijit\\_editor\\RichText.js:1887"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test\\deployment\\data\\tmp\\dojo\\dijit\\_editor\\RichText.js:2024"
+        },
+        {
+            "message": "Missing item type\nTODO: code for plain input boxes (this shouldn't run for inputs that are part of widgets)\n\n\t\tarray.forEach(this.containerNode.elements, function(element){\n\t\t\tif(element.name == ''){return};\t// like \"continue\"\n\t\t\tvar namePath = element.name.split(\".\");\n\t\t\tvar myObj=obj;\n\t\t\tvar name=namePath[namePath.length-1];\n\t\t\tfor(var j=1,len2=namePath.length;j<len2;++j){\n\t\t\t\tvar p=namePath[j - 1];\n\t\t\t\t// repeater support block\n\t\t\t\tvar nameA=p.split(\"[\");\n\t\t\t\tif(nameA.length > 1){\n\t\t\t\t\tif(typeof(myObj[nameA[0]]) == \"undefined\"){\n\t\t\t\t\t\tmyObj[nameA[0]]=[ ];\n\t\t\t\t\t} // if\n\n\t\t\t\t\tnameIndex=parseInt(nameA[1]);\n\t\t\t\t\tif(typeof(myObj[nameA[0]][nameIndex]) == \"undefined\"){\n\t\t\t\t\t\tmyObj[nameA[0]][nameIndex] = { };\n\t\t\t\t\t}\n\t\t\t\t\tmyObj=myObj[nameA[0]][nameIndex];\n\t\t\t\t\tcontinue;\n\t\t\t\t} // repeater support ends\n\n\t\t\t\tif(typeof(myObj[p]) == \"undefined\"){\n\t\t\t\t\tmyObj=undefined;\n\t\t\t\t\tbreak;\n\t\t\t\t};\n\t\t\t\tmyObj=myObj[p];\n\t\t\t}\n\n\t\t\tif(typeof(myObj) == \"undefined\"){\n\t\t\t\treturn;\t\t// like \"continue\"\n\t\t\t}\n\t\t\tif(typeof(myObj[name]) == \"undefined\" && this.ignoreNullValues){\n\t\t\t\treturn;\t\t// like \"continue\"\n\t\t\t}\n\n\t\t\t// TODO: widget values (just call set('value', ...) on the widget)\n\n\t\t\t// TODO: maybe should call dojo.getNodeProp() instead\n\t\t\tswitch(element.type){\n\t\t\t\tcase \"checkbox\":\n\t\t\t\t\telement.checked = (name in myObj) &&\n\t\t\t\t\t\tarray.some(myObj[name], function(val){ return val == element.value; });\n\t\t\t\t\tbreak;\n\t\t\t\tcase \"radio\":\n\t\t\t\t\telement.checked = (name in myObj) && myObj[name] == element.value;\n\t\t\t\t\tbreak;\n\t\t\t\tcase \"select-multiple\":\n\t\t\t\t\telement.selectedIndex=-1;\n\t\t\t\t\tarray.forEach(element.options, function(option){\n\t\t\t\t\t\toption.selected = array.some(myObj[name], function(val){ return option.value == val; });\n\t\t\t\t\t});\n\t\t\t\t\tbreak;\n\t\t\t\tcase \"select-one\":\n\t\t\t\t\telement.selectedIndex=\"0\";\n\t\t\t\t\tarray.forEach(element.options, function(option){\n\t\t\t\t\t\toption.selected = option.value == myObj[name];\n\t\t\t\t\t});\n\t\t\t\t\tbreak;\n\t\t\t\tcase \"hidden\":\n\t\t\t\tcase \"text\":\n\t\t\t\tcase \"textarea\":\n\t\t\t\tcase \"password\":\n\t\t\t\t\telement.value = myObj[name] || \"\";\n\t\t\t\t\tbreak;\n\t\t\t}\n\t\t});",
+            "line": " test\\deployment\\data\\tmp\\dojo\\dijit\\form\\_FormMixin.js:138"
+        },
+        {
+            "message": "Missing item type\ncode for plain input boxes (see also domForm.formToObject, can we use that instead of this code?\nbut it doesn't understand [] notation, presumably)\n\t\t\tvar obj = { };\n\t\t\tarray.forEach(this.containerNode.elements, function(elm){\n\t\t\t\tif(!elm.name)\t{\n\t\t\t\t\treturn;\t\t// like \"continue\"\n\t\t\t\t}\n\t\t\t\tvar namePath = elm.name.split(\".\");\n\t\t\t\tvar myObj=obj;\n\t\t\t\tvar name=namePath[namePath.length-1];\n\t\t\t\tfor(var j=1,len2=namePath.length;j<len2;++j){\n\t\t\t\t\tvar nameIndex = null;\n\t\t\t\t\tvar p=namePath[j - 1];\n\t\t\t\t\tvar nameA=p.split(\"[\");\n\t\t\t\t\tif(nameA.length > 1){\n\t\t\t\t\t\tif(typeof(myObj[nameA[0]]) == \"undefined\"){\n\t\t\t\t\t\t\tmyObj[nameA[0]]=[ ];\n\t\t\t\t\t\t} // if\n\t\t\t\t\t\tnameIndex=parseInt(nameA[1]);\n\t\t\t\t\t\tif(typeof(myObj[nameA[0]][nameIndex]) == \"undefined\"){\n\t\t\t\t\t\t\tmyObj[nameA[0]][nameIndex] = { };\n\t\t\t\t\t\t}\n\t\t\t\t\t}else if(typeof(myObj[nameA[0]]) == \"undefined\"){\n\t\t\t\t\t\tmyObj[nameA[0]] = { }\n\t\t\t\t\t} // if\n\n\t\t\t\t\tif(nameA.length == 1){\n\t\t\t\t\t\tmyObj=myObj[nameA[0]];\n\t\t\t\t\t}else{\n\t\t\t\t\t\tmyObj=myObj[nameA[0]][nameIndex];\n\t\t\t\t\t} // if\n\t\t\t\t} // for\n\n\t\t\t\tif((elm.type != \"select-multiple\" && elm.type != \"checkbox\" && elm.type != \"radio\") || (elm.type == \"radio\" && elm.checked)){\n\t\t\t\t\tif(name == name.split(\"[\")[0]){\n\t\t\t\t\t\tmyObj[name]=elm.value;\n\t\t\t\t\t}else{\n\t\t\t\t\t\t// can not set value when there is no name\n\t\t\t\t\t}\n\t\t\t\t}else if(elm.type == \"checkbox\" && elm.checked){\n\t\t\t\t\tif(typeof(myObj[name]) == 'undefined'){\n\t\t\t\t\t\tmyObj[name]=[ ];\n\t\t\t\t\t}\n\t\t\t\t\tmyObj[name].push(elm.value);\n\t\t\t\t}else if(elm.type == \"select-multiple\"){\n\t\t\t\t\tif(typeof(myObj[name]) == 'undefined'){\n\t\t\t\t\t\tmyObj[name]=[ ];\n\t\t\t\t\t}\n\t\t\t\t\tfor(var jdx=0,len3=elm.options.length; jdx<len3; ++jdx){\n\t\t\t\t\t\tif(elm.options[jdx].selected){\n\t\t\t\t\t\t\tmyObj[name].push(elm.options[jdx].value);\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t} // if\n\t\t\t\tname=undefined;\n\t\t\t}); // forEach",
+            "line": " test\\deployment\\data\\tmp\\dojo\\dijit\\form\\_FormMixin.js:281"
+        },
+        {
+            "message": "Missing item type\nOpenAjax.js\n\nReference implementation of the OpenAjax Hub, as specified by OpenAjax Alliance.\nSpecification is under development at:\n\n  http://www.openajax.org/member/wiki/OpenAjax_Hub_Specification\n\nCopyright 2006-2007 OpenAjax Alliance\n\nLicensed under the Apache License, Version 2.0 (the \"License\"); you may not\nuse this file except in compliance with the License. You may obtain a copy\nof the License at http://www.apache.org/licenses/LICENSE-2.0 . Unless\nrequired by applicable law or agreed to in writing, software distributed\nunder the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\nCONDITIONS OF ANY KIND, either express or implied. See the License for the\nspecific language governing permissions and limitations under the License.",
+            "line": " test\\deployment\\data\\tmp\\dojo\\dojo\\OpenAjax.js:1"
+        },
+        {
+            "message": "Missing item type\nThe lengths of the Hebrew months.  This is complicated, because there\nare three different types of years, or six if you count leap years.\nDue to the rules for postponing the start of the year to avoid having\ncertain holidays fall on the sabbath, the year can end up being three\ndifferent lengths, called \"deficient\", \"normal\", and \"complete\".",
+            "line": " test\\deployment\\data\\tmp\\dojo\\dojox\\date\\hebrew\\Date.js:41"
+        },
+        {
+            "message": "Missing item type\nThe cumulative # of days to the end of each month in a non-leap year\nAlthough this can be calculated from the MONTH_LENGTH table,\nkeeping it around separately makes some calculations a lot faster",
+            "line": " test\\deployment\\data\\tmp\\dojo\\dojox\\date\\hebrew\\Date.js:68"
+        },
+        {
+            "message": "Missing item type\nThe cumulative # of days to the end of each month in a leap year",
+            "line": " test\\deployment\\data\\tmp\\dojo\\dojox\\date\\hebrew\\Date.js:91"
+        },
+        {
+            "message": "Missing item type\nDojo port of fleegix date plugin from\n\n  http://js.fleegix.org/plugins/date/date\n\ncontributed to Dojo under CLA, with thanks to Matthew Eernisse (mde@fleegix.org)\nand Open Source Applications Foundation\n\nCredits: Ideas included from incomplete JS implementation of Olson\nparser, \"XMLDate\" by Philippe Goetz (philippe.goetz@wanadoo.fr)",
+            "line": " test\\deployment\\data\\tmp\\dojo\\dojox\\date\\timezone.js:1"
+        },
+        {
+            "message": "Missing item type\nRefactored:\npassing the primitive value 'true' to the factory function\nwill make the code on line #10457 unreachable, and thus 'jQuery' won't be assigned \nto the window object, & it won't be globaly available, and that's fine in our case \nas we are going to inject this version of jQuery (v3.3.1) as the context of the\nimmediate function that wraps the user's code, and make its identifiers ($, jQuery) only available in that anonymous wrapper function scope,\nand by that we make sure that this version of jQuery doesn't interfer with any other jQuery versions in out app.",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:44"
+        },
+        {
+            "message": "Missing item type\nCreate key-value caches of limited size",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:866"
+        },
+        {
+            "message": "Missing item type\nMark a function for special use by Sizzle",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:886"
+        },
+        {
+            "message": "Missing item type\nSupport testing using an element",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:895"
+        },
+        {
+            "message": "Missing item type\nAdds the same handler for all of the specified attrs",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:916"
+        },
+        {
+            "message": "Missing item type\nChecks document order of two siblings",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:930"
+        },
+        {
+            "message": "Missing item type\nReturns a function to use in pseudos for input types",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:958"
+        },
+        {
+            "message": "Missing item type\nReturns a function to use in pseudos for buttons",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:969"
+        },
+        {
+            "message": "Missing item type\nReturns a function to use in pseudos for :enabled/:disabled",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:980"
+        },
+        {
+            "message": "Missing item type\nReturns a function to use in pseudos for positionals",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:1036"
+        },
+        {
+            "message": "Missing item type\nChecks a node for validity as a Sizzle context",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:1058"
+        },
+        {
+            "message": "Missing item type\nDetects XML nodes",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:1070"
+        },
+        {
+            "message": "Missing item type\nSets document-related variables once based on the current document",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:1082"
+        },
+        {
+            "message": "Missing item type\nDocument sorting and removing duplicates",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:1562"
+        },
+        {
+            "message": "Missing item type\nUtility function for retrieving the text value of an array of DOM nodes",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:1595"
+        },
+        {
+            "message": "Missing item type\nA low-level selection function that works with Sizzle's compiled\n selector functions",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:2649"
+        },
+        {
+            "message": "Missing item type\nLoad a url into a page",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:9935"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\lib\\jquery-3.3.1.js:10433"
+        },
+        {
+            "message": "Missing item type",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\widget\\HTMLSnippet.js:173"
+        },
+        {
+            "message": "Missing item type\nuser's are get used to or might expect to have jQuery available globaly\nand they will write their code according to that, and since we, in this widget, don't expose \njQuery globaly, we'll check user's code snippet if there is any attemption to access jQuery \nfrom the global scope ( window ).",
+            "line": " test\\deployment\\web\\widgets\\HTMLSnippet\\widget\\HTMLSnippet.js:179"
+        },
+        {
+            "message": "Missing item type\nDo not edit anything below, unless you know what you are doing",
+            "line": " Gulpfile.js:9"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "name": "YUI ArcGIS",
+    "description": "YUI Configuration to Auto-Generate Docs for ArcGIS Widget",
+    "version": "0.0.1",
+    "url": "http://mendix.com/",
+    "options": {
+        "linkNatives": "true",        
+        "attributesEmit": "true",
+        "selleck": "true",
+        "outdir": "./docs"
+    }
+}
