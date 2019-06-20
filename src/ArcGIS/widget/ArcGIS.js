@@ -211,7 +211,7 @@ define([
 
 
                         // shouldn't this be closer to the end?
-                        this.set("loaded", true);
+                        //this.set("loaded", true);
 
 
 
@@ -339,6 +339,8 @@ define([
                             map: response.map
                         }, "HomeButton");
                         home.startup();
+
+                        this.set("loaded", true);
 
                         if (this.showDrawTools) {
                             var el = document.getElementsByClassName("drawTools")[0];
