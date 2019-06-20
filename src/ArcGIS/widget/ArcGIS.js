@@ -151,32 +151,10 @@ define([
 
                         // setup bookmarks
 
-                        // the bookmarks are hardcoded below, but could be easily modified
-                        // to include pre-defined locations or, better yet, 
+                        // the bookmarks are configured as a string in the Modeler, but could be easily 
+                        // modified to include pre-defined locations or, better yet, 
                         // to let individual users save their own bookmarks
-                        var bookmarks_list = [{
-                            "extent": {
-                                "spatialReference": {
-                                    "wkid": 102100
-                                },
-                                "xmin": -14201669,
-                                "ymin": 4642975,
-                                "xmax": -13021482,
-                                "ymax": 5278931
-                            },
-                            "name": "Northern California"
-                        }, {
-                            "extent": {
-                                "spatialReference": {
-                                    "wkid": 102100
-                                },
-                                "xmin": -8669334,
-                                "ymin": 4982379,
-                                "xmax": -8664724,
-                                "ymax": 4984864
-                            },
-                            "name": "Central Pennsylvania"
-                        }];
+                        var bookmarks_list = JSON.parse(this.bookmarksJSON);
 
                         if (this.showBookmarks) {
 

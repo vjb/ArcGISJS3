@@ -7,12 +7,17 @@
       <property key="webmapID" type="string" required="true" defaultValue="">
          <caption>Web Map ID</caption>
          <category>GIS Configuration</category>
-         <description>Web Map ID </description>
+         <description>Web Map ID</description>
       </property>
-       <property key="arcGISURL" type="string" required="true" defaultValue="">
+      <property key="arcGISURL" type="string" required="true" defaultValue="">
          <caption>ArcGIS URL</caption>
          <category>GIS Configuration</category>
          <description>ArcGIS URL</description>
+      </property>
+      <property key="bookmarksJSON" type="string" >
+         <caption>Bookmarks</caption>
+         <category>Bookmarks</category>
+         <description>Bookmark List </description>
       </property>
       <property key="showLayerTools" type="boolean" defaultValue="true">
          <caption>Show Layer Tools</caption>
@@ -29,12 +34,12 @@
          <category>Toolbars</category>
          <description>Show Base Maps on the map.</description>
       </property>
-       <property key="showMeasureTools" type="boolean" defaultValue="true">
+      <property key="showMeasureTools" type="boolean" defaultValue="true">
          <caption>Show Measure Tools</caption>
          <category>Toolbars</category>
          <description>Show Measure Tools on the map.</description>
       </property>
-       <property key="showBookmarks" type="boolean" defaultValue="true">
+      <property key="showBookmarks" type="boolean" defaultValue="true">
          <caption>Show Bookmarks</caption>
          <category>Toolbars</category>
          <description>Show Bookmark Tools on the map.</description>
