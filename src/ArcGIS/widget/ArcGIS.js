@@ -113,8 +113,9 @@ define([
                 var mapid = this.webmapID;
 
                 // map is hosted on dsraenterprise2 NOT arcgis.com
-                arcgisUtils.arcgisUrl = "https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/sharing/content/items";
-
+               // arcgisUtils.arcgisUrl = "https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/sharing/content/items";
+                arcgisUtils.arcgisUrl = this.arcGISURL;
+                
                 this.Map_Config = Map_Config;
 
 

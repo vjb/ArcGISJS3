@@ -9,6 +9,11 @@
          <category>GIS Configuration</category>
          <description>Web Map ID </description>
       </property>
+       <property key="arcGISURL" type="string" required="true" defaultValue="">
+         <caption>ArcGIS URL</caption>
+         <category>GIS Configuration</category>
+         <description>ArcGIS URL</description>
+      </property>
       <property key="showLayerTools" type="boolean" defaultValue="true">
          <caption>Show Layer Tools</caption>
          <category>Toolbars</category>
