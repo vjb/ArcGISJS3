@@ -4,10 +4,10 @@
    <description>The description of this widget.</description>
    <icon />
    <properties>
-      <property key="dummyKey" type="string" required="false" defaultValue="">
-         <caption>Dummy key</caption>
-         <category>Appearance</category>
-         <description>This key was added to make the widget work in the Modeler (needs atleast 1 key). Please change/remove this one</description>
+      <property key="webmapID" type="string" required="true" defaultValue="">
+         <caption>Web Map ID</caption>
+         <category>GIS Configuration</category>
+         <description>Web Map ID </description>
       </property>
       <property key="showLayerTools" type="boolean" defaultValue="true">
          <caption>Show Layer Tools</caption>

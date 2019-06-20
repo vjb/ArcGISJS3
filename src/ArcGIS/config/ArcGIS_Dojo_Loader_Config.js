@@ -5,23 +5,28 @@ should include this configuration -- it will tell the Dojo Loader where to look 
 that start with <name>.  Otherwise, Mendix looks for them under mxclientsystem
 */
 
+// pull the libraries from dsraenterprise2
+//var libraryURL = "https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/jsapi/jsapi/";
+
+// pull the libraries from the official CDN
+var libraryURL = "https://js.arcgis.com/3.28/"
 
 define({
     packages: [{
             name: "esri",
-            location: 'https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/jsapi/jsapi/esri'
+            location: libraryURL + 'esri'
         },
         {
             name: "dojox",
-            location: 'https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/jsapi/jsapi/dojox'
+            location: libraryURL + 'dojox'
         },
         {
             name: "dojo",
-            location: 'https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/jsapi/jsapi/dojo'
+            location: libraryURL + 'dojo'
         },
         {
             name: "moment",
-            location: 'https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/jsapi/jsapi/moment'
+            location: libraryURL + 'moment'
         },
     ]
 });
