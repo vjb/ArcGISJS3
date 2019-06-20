@@ -5,6 +5,7 @@ should include this configuration -- it will tell the Dojo Loader where to look 
 that start with <name>.  Otherwise, Mendix looks for them under mxclientsystem
 */
 
+
 // pull the libraries from dsraenterprise2
 //var libraryURL = "https://dsraenterprise2.canadacentral.cloudapp.azure.com/portal/jsapi/jsapi/";
 
