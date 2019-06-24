@@ -391,17 +391,15 @@ define([
                             // check zoom level to tell whether the draw button should be enabled
                             var mapZoomLevel = this._map.getZoom();
                             var minZoomForDraw = this.minZoomDrawTools;
-                            if (minZoomForDraw > mapZoomLevel ){
-                                el.disabled=true;
+                            if (minZoomForDraw > mapZoomLevel) {
+                                el.disabled = true;
                                 var el2 = document.getElementsByClassName(
                                     "placePointButton"
                                 )[0];
-                                
+
                                 el2.disabled = true;
                             }
-                            
                         }
-
 
                         function activateTool() {
                             var tool = this.textContent
@@ -477,7 +475,6 @@ define([
             this._map.on(
                 "zoom-end",
                 dojo.hitch(this, function() {
-                   
                     this._contextObj.set(
                         this.currentZoomLevel,
                         this._map.getZoom()
@@ -486,37 +483,32 @@ define([
                     // check zoom level to tell whether the draw button should be enabled
                     var mapZoomLevel = this._map.getZoom();
                     var minZoomForDraw = this.minZoomDrawTools;
-                   
-                    if (minZoomForDraw > mapZoomLevel ){
 
+                    if (minZoomForDraw > mapZoomLevel) {
                         var el = document.getElementsByClassName(
                             "drawTools"
                         )[0];
 
-                        el.disabled=true;
-                        
+                        el.disabled = true;
+
                         var el2 = document.getElementsByClassName(
                             "placePointButton"
                         )[0];
-                        
+
                         el2.disabled = true;
-                    }
-                    else{
+                    } else {
                         var el = document.getElementsByClassName(
                             "drawTools"
                         )[0];
 
-                        el.disabled=false;
-                        
+                        el.disabled = false;
+
                         var el2 = document.getElementsByClassName(
                             "placePointButton"
                         )[0];
-                        
+
                         el2.disabled = false;
-
                     }
-
-
                 })
             );
 
@@ -639,11 +631,13 @@ define([
                         require(ArcGIS_Dojo_Loader_Config, [
                             "esri/tasks/QueryTask",
                             "esri/tasks/query",
-                            "esri/SpatialReference"
+                            "esri/SpatialReference",
+                            "esri/symbols/SimpleMarkerSymbol",
                         ], dojo.hitch(this, function(
                             QueryTask,
                             Query,
-                            SpatialReference
+                            SpatialReference,
+                            SimpleMarkerSymbol
                         ) {
                             var query = new Query();
                             var queryTask = new QueryTask(
@@ -657,7 +651,29 @@ define([
                                 queryResults
                             ) {
                                 console.log("complete", queryResults);
+                             
+                                var symbol = new SimpleMarkerSymbol({
+                                     
+                                    "color": [255,255,255,0],
+                                    "size": 12,
+                                    "angle": 0,
+                                    "xoffset": 0,
+                                    "yoffset": 0,
+                                    "type": "esriSMS",
+                                    "style": "esriSMSSquare",
+                                    "outline": {
+                                      "color": [255,0,0,255],
+                                      "width": 2,
+                                      "type": "esriSLS",
+                                      "style": "esriSLSSolid"
+                                    }
+                                  });
+                                this._map.centerAndZoom(queryResults.featureSet.features[0].geometry, 18);
+                                
+                                this._map.graphics.add(queryResults.featureSet.features[0].setSymbol(symbol));
+
                             }
+                            
 
                             function queryTaskErrorHandler(queryError) {
                                 console.log("error", queryError.error.details);
@@ -674,7 +690,7 @@ define([
                             //query.where("objectid='10'");
                             queryTask.on(
                                 "complete",
-                                queryTaskExecuteCompleteHandler
+                                dojo.hitch(this,queryTaskExecuteCompleteHandler)
                             );
                             queryTask.on("error", queryTaskErrorHandler);
                             queryTask.execute(query);
