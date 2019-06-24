@@ -387,7 +387,21 @@ define([
                                 .forEach(function(d) {
                                     d.addEventListener("click", activateTool);
                                 });
+
+                            // check zoom level to tell whether the draw button should be enabled
+                            var mapZoomLevel = this._map.getZoom();
+                            var minZoomForDraw = this.minZoomDrawTools;
+                            if (minZoomForDraw > mapZoomLevel ){
+                                el.disabled=true;
+                                var el2 = document.getElementsByClassName(
+                                    "placePointButton"
+                                )[0];
+                                
+                                el2.disabled = true;
+                            }
+                            
                         }
+
 
                         function activateTool() {
                             var tool = this.textContent
@@ -463,10 +477,46 @@ define([
             this._map.on(
                 "zoom-end",
                 dojo.hitch(this, function() {
+                   
                     this._contextObj.set(
                         this.currentZoomLevel,
                         this._map.getZoom()
                     );
+
+                    // check zoom level to tell whether the draw button should be enabled
+                    var mapZoomLevel = this._map.getZoom();
+                    var minZoomForDraw = this.minZoomDrawTools;
+                   
+                    if (minZoomForDraw > mapZoomLevel ){
+
+                        var el = document.getElementsByClassName(
+                            "drawTools"
+                        )[0];
+
+                        el.disabled=true;
+                        
+                        var el2 = document.getElementsByClassName(
+                            "placePointButton"
+                        )[0];
+                        
+                        el2.disabled = true;
+                    }
+                    else{
+                        var el = document.getElementsByClassName(
+                            "drawTools"
+                        )[0];
+
+                        el.disabled=false;
+                        
+                        var el2 = document.getElementsByClassName(
+                            "placePointButton"
+                        )[0];
+                        
+                        el2.disabled = false;
+
+                    }
+
+
                 })
             );
 

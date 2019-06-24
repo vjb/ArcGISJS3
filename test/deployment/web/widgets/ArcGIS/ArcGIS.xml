@@ -32,6 +32,11 @@
             </attributeTypes>
         </property>
  
+  <property key="minZoomDrawTools" type="string" defaultValue="15.0">
+         <caption>Min Zoom to Show Draw Tools</caption>
+         <category>Integration</category>
+         <description>Minimum Zoom Level to Show Draw Tools on the map.</description>
+      </property>
 
       <property key="webmapID" type="string" required="true" defaultValue="">
          <caption>Web Map ID</caption>
