@@ -1,0 +1,157 @@
+Reading profile.template.js...OK
+Reading C:\Users\vbe\temp\VJBGIS\test\deployment\widgets.config.json...OK
+Parsing C:\Users\vbe\temp\VJBGIS\test\deployment\widgets.config.json...OK
+Reading C:\Users\vbe\temp\VJBGIS\test\deployment\widgets.config.json...OK
+Parsing C:\Users\vbe\temp\VJBGIS\test\deployment\widgets.config.json...OK
+Initializing config...OK
+Loading "Gruntfile.js" tasks...OK
++ default, generate
+
+No tasks specified, running default tasks.
+Running tasks: default
+
+Running "default" task
+
+Running "generate" task
+
+Running "generate:profile" (generate) task
+Verifying property generate.profile exists in config...OK
+File: [no files]
+Reading C:\Users\vbe\temp\VJBGIS\test\deployment\widgets.config.json...OK
+Parsing C:\Users\vbe\temp\VJBGIS\test\deployment\widgets.config.json...OK
+C:\Users\vbe\temp\VJBGIS\test\deployment\widgets.config.json [ 'MobileFeatures.widget.MobileFeatures' ]
+Writing C:\Users\vbe\temp\VJBGIS\test\deployment\data\tmp\widgets.profile.js...OK
+
+Running "generate:javascript" (generate) task
+Verifying property generate.javascript exists in config...OK
+File: [no files]
+Reading C:\Users\vbe\temp\VJBGIS\test\deployment\widgets.config.json...OK
+Parsing C:\Users\vbe\temp\VJBGIS\test\deployment\widgets.config.json...OK
+C:\Users\vbe\temp\VJBGIS\test\deployment\widgets.config.json [ 'MobileFeatures.widget.MobileFeatures' ]
+Writing C:\Users\vbe\temp\VJBGIS\test\deployment\data\tmp\widgets\widgets.js...OK
+
+Running "dojo" task
+
+Running "dojo:dist" (dojo) task
+Verifying property dojo.dist exists in config...OK
+File: [no files]
+Options: dojo="dojo/dojo.js", load="build", profile="C:\\Users\\vbe\\temp\\VJBGIS\\test\\deployment\\data\\tmp\\widgets.profile.js", profiles=null, appConfigFile=null, package=null, packages=null, require=null, requires=null, releaseDir="C:\\Users\\vbe\\temp\\VJBGIS\\test\\deployment\\data\\tmp", action="release", cwd="./", dojoConfig=null, basePath="", layerOptimize=""
+
+Building Dojo...
+Dojo build parameters:
+	dojo/dojo.js 
+	load=build 
+	--profile C:\Users\vbe\temp\VJBGIS\test\deployment\data\tmp\widgets.profile.js 
+	--profile C:\Users\vbe\temp\VJBGIS\test\deployment\data\tmp\widgets.profile.js 
+	--releaseDir C:\Users\vbe\temp\VJBGIS\test\deployment\data\tmp 
+	--action release 
+	--layerOptimize  
+processing profile resource C:/Users/vbe/temp/VJBGIS/test/deployment/data/tmp/widgets.profile.js
+processing profile resource C:/Users/vbe/temp/VJBGIS/test/deployment/data/tmp/widgets.profile.js
+warn(209) Missing or empty package.json. filename: C:/Program Files/Mendix/7.22.2.44474/modeler/tools/grunt/dojox/package.json
+info(107) Package Version: package: dijit; version: 1.12.2
+processing profile resource C:/Program Files/Mendix/7.22.2.44474/modeler/tools/grunt/dijit/dijit.profile.js
+warn(209) Missing or empty package.json. filename: C:/Program Files/Mendix/7.22.2.44474/modeler/tools/grunt/mxui/package.json
+warn(209) Missing or empty package.json. filename: C:/Program Files/Mendix/7.22.2.44474/modeler/tools/grunt/mendix/package.json
+warn(209) Missing or empty package.json. filename: C:/Program Files/Mendix/7.22.2.44474/modeler/tools/grunt/big/package.json
+warn(209) Missing or empty package.json. filename: C:/Users/vbe/temp/VJBGIS/test/deployment/web/widgets/MobileFeatures/package.json
+warn(209) Missing or empty package.json. filename: C:/Users/vbe/temp/VJBGIS/test/deployment/data/tmp/widgets/package.json
+info(107) Package Version: package: dojo; version: 1.12.2
+processing profile resource C:/Program Files/Mendix/7.22.2.44474/modeler/tools/grunt/dojo/dojo.profile.js
+discovering resources...
+starting reading resources...
+starting processing raw resource content...
+starting tokenizing resource...
+starting processing resource tokens...
+starting parsing resource...
+starting processing resource AST...
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/main
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/buddhist
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/hebrew
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/islamic
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/persian
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/posix
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/relative
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/timezone
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/umalqura
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/buddhist/Date
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/buddhist/locale
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/hebrew/Date
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/hebrew/locale
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/hebrew/numerals
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/islamic/Date
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/islamic/locale
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/persian/Date
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/persian/locale
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/umalqura/Date
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: dojox/date/umalqura/locale
+warn(224) A plugin dependency was encountered but there was no build-time plugin resolver. module: dijit/Fieldset; plugin: dojo/query
+warn(224) A plugin dependency was encountered but there was no build-time plugin resolver. module: dijit/RadioMenuItem; plugin: dojo/query
+warn(224) A plugin dependency was encountered but there was no build-time plugin resolver. module: dijit/Tree; plugin: dojo/query
+warn(216) dojo/has plugin resource could not be resolved during build-time. plugin resource id: dojo-bidi?./_BidiMixin; reference module id: dijit/_WidgetBase
+warn(224) A plugin dependency was encountered but there was no build-time plugin resolver. module: dijit/form/_RadioButtonMixin; plugin: dojo/query
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mxui/dom
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mxui/mxui
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mxui/html/parser
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mxui/lib/ColumnResizer
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mxui/lib/form/InlineForm
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mxui/lib/form/_FormBase
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mxui/mixin/_Stateful
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mxui/widget/Image
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mxui/widget/_Button
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mxui/widget/_FormWidget
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mxui/widget/_WidgetBase
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mendix/lang
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mendix/validator
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mendix/lib/MxContext
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mendix/lib/MxMetaObject
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: mendix/lib/ObjectValidation
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: big/big
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: MobileFeatures/widget/MobileFeatures
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: MobileFeatures/widget/plugins/advanced
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: MobileFeatures/widget/plugins/classes
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: MobileFeatures/widget/plugins/customconnectionerror
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: MobileFeatures/widget/plugins/dialog
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: MobileFeatures/widget/plugins/spinner
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: MobileFeatures/widget/plugins/statusbar
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: MobileFeatures/widget/plugins/transitions
+warn(205) Module not tagged as pure AMD yet it contains AMD API applications. module: widgets/widgets
+warn(216) dojo/has plugin resource could not be resolved during build-time. plugin resource id: dojo-firebug?./_firebug/firebug; reference module id: dojo/main
+warn(216) dojo/has plugin resource could not be resolved during build-time. plugin resource id: dom-addeventlistener?:./aspect; reference module id: dojo/on
+warn(224) A plugin dependency was encountered but there was no build-time plugin resolver. module: dojo/request; plugin: dojo/request/default
+warn(224) A plugin dependency was encountered but there was no build-time plugin resolver. module: dojo/request/node; plugin: dojo/node
+warn(224) A plugin dependency was encountered but there was no build-time plugin resolver. module: dojo/request/node; plugin: dojo/node
+warn(224) A plugin dependency was encountered but there was no build-time plugin resolver. module: dojo/request/node; plugin: dojo/node
+warn(224) A plugin dependency was encountered but there was no build-time plugin resolver. module: dojo/request/node; plugin: dojo/node
+warn(224) A plugin dependency was encountered but there was no build-time plugin resolver. module: dojo/request/registry; plugin: dojo/request/default
+warn(216) dojo/has plugin resource could not be resolved during build-time. plugin resource id: host-browser?dom-addeventlistener?:../on:; reference module id: dojo/request/watch
+starting executing global optimizations...
+starting writing resources...
+starting cleaning up...
+starting reporting...
+Report written to C:/Users/vbe/temp/VJBGIS/test/deployment/data/tmp/dojo/build-report.txt
+Process finished normally.
+	errors: 0
+	warnings: 66
+	build time: 5.8 seconds
+Dojo Successfully Built...
+
+Running "copy" task
+
+Running "copy:main" (copy) task
+Verifying property copy.main exists in config...OK
+Files: C:/Users/vbe/temp/VJBGIS/test/deployment/data/tmp/dojo/widgets/widgets.js -> C:\Users\vbe\temp\VJBGIS\test\deployment\web\widgets\widgets.js
+Options: encoding="utf8", processContent=false, processContentExclude=[], timestamp=false, mode=false
+Copying C:/Users/vbe/temp/VJBGIS/test/deployment/data/tmp/dojo/widgets/widgets.js -> C:/Users/vbe/temp/VJBGIS/test/deployment/web/widgets/widgets.js
+Reading C:/Users/vbe/temp/VJBGIS/test/deployment/data/tmp/dojo/widgets/widgets.js...OK
+Writing C:/Users/vbe/temp/VJBGIS/test/deployment/web/widgets/widgets.js...OK
+Copied 1 file
+
+Running "copy:nls" (copy) task
+Verifying property copy.nls exists in config...OK
+Options: encoding="utf8", processContent=false, processContentExclude=[], timestamp=false, mode=false
+
+
+Done, without errors.
+
+

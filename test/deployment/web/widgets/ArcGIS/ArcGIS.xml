@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.mendix.com/widget/1.0/" id="ArcGIS.widget.ArcGIS" needsEntityContext="true">
+   <name>ArcGIS</name>
+   <description>The description of this widget.</description>
+   <icon />
+   <properties>
+      <property key="webmapID" type="string" required="true" defaultValue="">
+         <caption>Web Map ID</caption>
+         <category>GIS Configuration</category>
+         <description>Web Map ID</description>
+      </property>
+      <property key="arcGISURL" type="string" required="true" defaultValue="">
+         <caption>ArcGIS URL</caption>
+         <category>GIS Configuration</category>
+         <description>ArcGIS URL</description>
+      </property>
+      <property key="bookmarksJSON" type="string" >
+         <caption>Bookmarks</caption>
+         <category>Bookmarks</category>
+         <description>Bookmark List </description>
+      </property>
+      <property key="showLayerTools" type="boolean" defaultValue="true">
+         <caption>Show Layer Tools</caption>
+         <category>Toolbars</category>
+         <description>Show Layer Tools on the map.</description>
+      </property>
+      <property key="showDrawTools" type="boolean" defaultValue="true">
+         <caption>Show Draw Tools</caption>
+         <category>Toolbars</category>
+         <description>Show Draw Tools on the map.</description>
+      </property>
+      <property key="showBaseMaps" type="boolean" defaultValue="true">
+         <caption>Show Base Maps</caption>
+         <category>Toolbars</category>
+         <description>Show Base Maps on the map.</description>
+      </property>
+      <property key="showMeasureTools" type="boolean" defaultValue="true">
+         <caption>Show Measure Tools</caption>
+         <category>Toolbars</category>
+         <description>Show Measure Tools on the map.</description>
+      </property>
+      <property key="showBookmarks" type="boolean" defaultValue="true">
+         <caption>Show Bookmarks</caption>
+         <category>Toolbars</category>
+         <description>Show Bookmark Tools on the map.</description>
+      </property>
+   </properties>
+</widget>

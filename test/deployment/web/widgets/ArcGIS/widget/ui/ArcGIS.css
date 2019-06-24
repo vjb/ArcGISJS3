@@ -1,0 +1,174 @@
+.widgetname #LocateButton {
+    position: absolute;
+    top: 260px;
+    left: 20px;
+    z-index: 50;
+}
+
+.dropbtn {
+    background-color: #0595DB;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.esriOverviewMap {
+  margin-top: 10px;
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+}
+
+#mapContainer {
+    position: relative;
+
+}
+
+.dropdown button {
+    width: 100%;
+    margin-bottom: 4px;
+    text-align: left;
+}
+
+.dropbtn {
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.dropdownWrapper {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+}
+
+.ico {
+    margin-right: 10px;
+}
+
+.btn-clicked{
+  background-color: #0477af;
+}
+
+#measureToolContainer{
+  position: absolute;
+  right: 20px;
+  width: 400px;
+  height: 150px;
+  bottom: 60px;
+  background-color: #f8f8f8;
+  border-width: 5px;
+  border-color: darkgray
+}
+
+#legendContainer{
+  position: absolute;
+  right: 20px;
+  bottom: 230px;
+  background-color: #f8f8f8;
+  border-width: 5px;
+  border-color: darkgray;
+  z-index: 99;
+  padding: 10px;
+  outline: 5px #0595DB;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f8f8f8;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 99;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #0595DB;
+}
+
+#map_zoom_slider {
+    left: 10px;
+    margin-top: 200px;
+}
+
+.widgetname #map {
+    padding-top: 10px;
+    margin: 0;
+    height: 800px;
+    padding-bottom: 20px;
+}
+
+.btn-default {
+    margin-right: 5px;
+}
+
+.widgetname #search {
+    position: absolute;
+    bottom: 60px;
+    left: 10px;
+    z-index: 2;
+}
+
+.card {
+    padding: 12px !important;
+    margin-bottom: 5px;
+}
+
+.home {
+    margin-top: 30px;
+}
+
+#mainWindow {
+    /* font-family: sans-serif;*/
+    height: 100%;
+    width: 100%;
+}
+
+#header {
+    height: 120px;
+    overflow: auto;
+    padding: 0.5em;
+}
+
+#basemapGallery {
+    height: 110px;
+    overflow-y: scroll;
+}

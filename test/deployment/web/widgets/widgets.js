@@ -1,0 +1,1 @@
+define(["ArcGIS/widget/ArcGIS", "HTMLSnippet/widget/HTMLSnippet", "HTMLSnippet/widget/HTMLSnippetContext", "JSON/widget/Editor", "MobileFeatures/widget/MobileFeatures"], {});
