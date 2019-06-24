@@ -140,6 +140,19 @@ define([
                         this._map = map;
                         this._response = response;
 
+                       
+
+                       /* firePerimeterFL.on("dbl-click", function(evt) {
+                            event.stop(evt);
+                            if (editingEnabled === false) {
+                              editingEnabled = true;
+                              editToolbar.activate(Edit.EDIT_VERTICES , evt.graphic);
+                            } else {
+                              editToolbar.deactivate();
+                              editingEnabled = false;
+                            }
+                          });
+                          */
                         // setup overview
 
                         var overviewMapDijit = new OverviewMap({
@@ -193,6 +206,15 @@ define([
                         // add Edit tool to make graphics movable
                         var editToolbar = new Edit(map);
                         this.editToolbar = editToolbar;
+
+                         // asset layer 
+                         this._response.itemInfo.itemData.operationalLayers[0].layerObject.on(
+                            "dbl-click",
+                            function(evt) {
+                               event.stop(evt);
+                               activateToolbar(evt.graphic);
+                            }
+                        );
 
                         //Activate the toolbar when you click on a graphic
                         map.graphics.on("click", function(evt) {
@@ -632,7 +654,7 @@ define([
                             "esri/tasks/QueryTask",
                             "esri/tasks/query",
                             "esri/SpatialReference",
-                            "esri/symbols/SimpleMarkerSymbol",
+                            "esri/symbols/SimpleMarkerSymbol"
                         ], dojo.hitch(this, function(
                             QueryTask,
                             Query,
@@ -651,29 +673,34 @@ define([
                                 queryResults
                             ) {
                                 console.log("complete", queryResults);
-                             
-                                var symbol = new SimpleMarkerSymbol({
-                                     
-                                    "color": [255,255,255,0],
-                                    "size": 12,
-                                    "angle": 0,
-                                    "xoffset": 0,
-                                    "yoffset": 0,
-                                    "type": "esriSMS",
-                                    "style": "esriSMSSquare",
-                                    "outline": {
-                                      "color": [255,0,0,255],
-                                      "width": 2,
-                                      "type": "esriSLS",
-                                      "style": "esriSLSSolid"
-                                    }
-                                  });
-                                this._map.centerAndZoom(queryResults.featureSet.features[0].geometry, 18);
-                                
-                                this._map.graphics.add(queryResults.featureSet.features[0].setSymbol(symbol));
 
+                                var symbol = new SimpleMarkerSymbol({
+                                    color: [255, 255, 255, 0],
+                                    size: 12,
+                                    angle: 0,
+                                    xoffset: 0,
+                                    yoffset: 0,
+                                    type: "esriSMS",
+                                    style: "esriSMSSquare",
+                                    outline: {
+                                        color: [255, 0, 0, 255],
+                                        width: 2,
+                                        type: "esriSLS",
+                                        style: "esriSLSSolid"
+                                    }
+                                });
+                                this._map.centerAndZoom(
+                                    queryResults.featureSet.features[0]
+                                        .geometry,
+                                    18
+                                );
+
+                                this._map.graphics.add(
+                                    queryResults.featureSet.features[0].setSymbol(
+                                        symbol
+                                    )
+                                );
                             }
-                            
 
                             function queryTaskErrorHandler(queryError) {
                                 console.log("error", queryError.error.details);
@@ -690,7 +717,10 @@ define([
                             //query.where("objectid='10'");
                             queryTask.on(
                                 "complete",
-                                dojo.hitch(this,queryTaskExecuteCompleteHandler)
+                                dojo.hitch(
+                                    this,
+                                    queryTaskExecuteCompleteHandler
+                                )
                             );
                             queryTask.on("error", queryTaskErrorHandler);
                             queryTask.execute(query);
