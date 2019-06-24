@@ -4,7 +4,7 @@ grant {
   permission java.io.FilePermission "conf/dictionaries/en_US.dic", "read";
   permission java.io.FilePermission "java:fonts", "read";
   permission java.io.FilePermission "quartz.properties", "read";
-  permission java.io.FilePermission "C:/Program Files/Mendix/7.22.2.44474/-", "read";
+  permission java.io.FilePermission "C:/Program Files/Mendix/7.23.5.52273/-", "read";
   permission java.io.FilePermission "C:/Users/vbe/temp/VJBGIS/test/deployment/-", "read";
   permission java.io.FilePermission "C:/Users/vbe/temp/VJBGIS/test/deployment/data/files/-", "read";
   permission java.io.FilePermission "C:/Users/vbe/temp/VJBGIS/test/deployment/data/tmp", "read";
@@ -186,7 +186,7 @@ grant {
   permission org.bouncycastle.jce.ProviderConfigurationPermission "BC", "ecImplicitlyCA, threadLocalEcImplicitlyCA";
 };
 
-grant codeBase "file:C:/Program Files/Mendix/7.22.2.44474/-" {
+grant codeBase "file:C:/Program Files/Mendix/7.23.5.52273/-" {
   permission java.security.AllPermission;
 };
 
@@ -194,7 +194,7 @@ grant codeBase "file:${{java.ext.dirs}}/-" {
   permission java.security.AllPermission;
 };
 
-keystore "file:C:/Program Files/Mendix/7.22.2.44474/runtime/lib/keystore";
+keystore "file:C:/Program Files/Mendix/7.23.5.52273/runtime/lib/keystore";
 
 grant SignedBy "mendix" {
   permission java.security.AllPermission;

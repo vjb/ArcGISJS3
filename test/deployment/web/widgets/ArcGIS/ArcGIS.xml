@@ -4,6 +4,35 @@
    <description>The description of this widget.</description>
    <icon />
    <properties>
+
+     <property key="currentZoomLevel" type="attribute">
+            <caption>Current Zoom Level</caption>
+            <category>Integration</category>
+            <description>The current zoom level of the map.</description>
+            <attributeTypes>
+                <attributeType name="Decimal" />
+            </attributeTypes>
+        </property>
+
+        <property key="droppedLatitude" type="attribute">
+            <caption>Latitude</caption>
+            <category>Integration</category>
+            <description>The latitude of the most recently placed point.</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+
+<property key="droppedLongitude" type="attribute">
+            <caption>Longitude</caption>
+            <category>Integration</category>
+            <description>The longitude of the most recently placed point.</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+ 
+
       <property key="webmapID" type="string" required="true" defaultValue="">
          <caption>Web Map ID</caption>
          <category>GIS Configuration</category>

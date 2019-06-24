@@ -2,10 +2,9 @@ Buildfile: C:\Users\vbe\temp\VJBGIS\test\deployment\build_core.xml
 
 clean:
    [delete] Deleting directory C:\Users\vbe\temp\VJBGIS\test\deployment\model
+   [delete] Deleting directory C:\Users\vbe\temp\VJBGIS\test\deployment\run
 
-BUILD FAILED
-C:\Users\vbe\temp\VJBGIS\test\deployment\build_core.xml:7: Unable to delete file C:\Users\vbe\temp\VJBGIS\test\deployment\model\bundles\project.jar
-
+BUILD SUCCESSFUL
 Total time: 0 seconds
 
 

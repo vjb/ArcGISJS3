@@ -6,7 +6,7 @@
     "DatabaseHost": "",
     "DatabaseUserName": "",
     "DatabaseUseIntegratedSecurity": "False",
-    "ApplicationRootUrl": "http://localhost:8085/",
+    "ApplicationRootUrl": "http://localhost:8080/",
     "ScheduledEventExecution": "None"
   },
   "Constants": {},

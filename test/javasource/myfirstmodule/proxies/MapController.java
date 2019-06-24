@@ -30,7 +30,9 @@ public class MapController
 		AssetAsJSON("AssetAsJSON"),
 		Switch_ZoomToLatLon("Switch_ZoomToLatLon"),
 		Switch_ZoomToGlobalID("Switch_ZoomToGlobalID"),
-		bookmarksJSON("bookmarksJSON");
+		bookmarksJSON("bookmarksJSON"),
+		DroppedLatitude("DroppedLatitude"),
+		DroppedLongitude("DroppedLongitude");
 
 		private java.lang.String metaName;
 
@@ -39,7 +41,7 @@ public class MapController
 			metaName = s;
 		}
 
-		@Override
+		@java.lang.Override
 		public java.lang.String toString()
 		{
 			return metaName;
@@ -65,7 +67,7 @@ public class MapController
 	/**
 	 * @deprecated Use 'MapController.load(IContext, IMendixIdentifier)' instead.
 	 */
-	@Deprecated
+	@java.lang.Deprecated
 	public static myfirstmodule.proxies.MapController initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixIdentifier mendixIdentifier) throws com.mendix.core.CoreException
 	{
 		return myfirstmodule.proxies.MapController.load(context, mendixIdentifier);
@@ -514,6 +516,78 @@ public class MapController
 	}
 
 	/**
+	 * @return value of DroppedLatitude
+	 */
+	public final java.lang.String getDroppedLatitude()
+	{
+		return getDroppedLatitude(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of DroppedLatitude
+	 */
+	public final java.lang.String getDroppedLatitude(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.DroppedLatitude.toString());
+	}
+
+	/**
+	 * Set value of DroppedLatitude
+	 * @param droppedlatitude
+	 */
+	public final void setDroppedLatitude(java.lang.String droppedlatitude)
+	{
+		setDroppedLatitude(getContext(), droppedlatitude);
+	}
+
+	/**
+	 * Set value of DroppedLatitude
+	 * @param context
+	 * @param droppedlatitude
+	 */
+	public final void setDroppedLatitude(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String droppedlatitude)
+	{
+		getMendixObject().setValue(context, MemberNames.DroppedLatitude.toString(), droppedlatitude);
+	}
+
+	/**
+	 * @return value of DroppedLongitude
+	 */
+	public final java.lang.String getDroppedLongitude()
+	{
+		return getDroppedLongitude(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of DroppedLongitude
+	 */
+	public final java.lang.String getDroppedLongitude(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.DroppedLongitude.toString());
+	}
+
+	/**
+	 * Set value of DroppedLongitude
+	 * @param droppedlongitude
+	 */
+	public final void setDroppedLongitude(java.lang.String droppedlongitude)
+	{
+		setDroppedLongitude(getContext(), droppedlongitude);
+	}
+
+	/**
+	 * Set value of DroppedLongitude
+	 * @param context
+	 * @param droppedlongitude
+	 */
+	public final void setDroppedLongitude(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String droppedlongitude)
+	{
+		getMendixObject().setValue(context, MemberNames.DroppedLongitude.toString(), droppedlongitude);
+	}
+
+	/**
 	 * @return the IMendixObject instance of this proxy for use in the Core interface.
 	 */
 	public final com.mendix.systemwideinterfaces.core.IMendixObject getMendixObject()
@@ -529,7 +603,7 @@ public class MapController
 		return context;
 	}
 
-	@Override
+	@java.lang.Override
 	public boolean equals(Object obj)
 	{
 		if (obj == this)
@@ -543,7 +617,7 @@ public class MapController
 		return false;
 	}
 
-	@Override
+	@java.lang.Override
 	public int hashCode()
 	{
 		return getMendixObject().hashCode();
@@ -561,7 +635,7 @@ public class MapController
 	 * @return String GUID from this object, format: ID_0000000000
 	 * @deprecated Use getMendixObject().getId().toLong() to get a unique identifier for this object.
 	 */
-	@Deprecated
+	@java.lang.Deprecated
 	public java.lang.String getGUID()
 	{
 		return "ID_" + getMendixObject().getId().toLong();

@@ -1,0 +1,12 @@
+Buildfile: C:\Users\vbe\temp\VJBGIS\test\deployment\build_core.xml
+
+compile:
+    [javac] Compiling 2 source files to C:\Users\vbe\temp\VJBGIS\test\deployment\run\bin
+
+package:
+      [jar] Building jar: C:\Users\vbe\temp\VJBGIS\test\deployment\model\bundles\project.jar
+
+BUILD SUCCESSFUL
+Total time: 3 seconds
+
+

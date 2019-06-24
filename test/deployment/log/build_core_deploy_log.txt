@@ -1,7 +1,7 @@
 Buildfile: C:\Users\vbe\temp\VJBGIS\test\deployment\build_core.xml
 
 deploy:
-     [copy] Copying 45 files to C:\Users\vbe\temp\VJBGIS\test\deployment
+     [copy] Copying 46 files to C:\Users\vbe\temp\VJBGIS\test\deployment
 
 BUILD SUCCESSFUL
 Total time: 0 seconds
