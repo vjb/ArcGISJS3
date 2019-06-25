@@ -54,6 +54,7 @@ define([
         _handles: null,
         _contextObj: null,
         _map: null,
+        _firstRun: true,
 
         constructor: function() {
             this._handles = [];
@@ -88,6 +89,7 @@ define([
                 "esri/Color",
                 "esri/dijit/Measurement",
                 "esri/toolbars/edit",
+                "esri/tasks/query",
                 "dojo/_base/event",
                 "dojo/dom-construct",
                 "dojo/on",
@@ -117,6 +119,7 @@ define([
                 Color,
                 Measurement,
                 Edit,
+                Query,
                 event,
                 domConstruct,
                 on,
@@ -140,20 +143,8 @@ define([
                         var map = response.map;
 
                         this._map = map;
-                        this._response = response;
 
-                        /* firePerimeterFL.on("dbl-click", function(evt) {
-                            event.stop(evt);
-                            if (editingEnabled === false) {
-                              editingEnabled = true;
-                              editToolbar.activate(Edit.EDIT_VERTICES , evt.graphic);
-                            } else {
-                              editToolbar.deactivate();
-                              editingEnabled = false;
-                            }
-                          });
-                          */
-                        // setup overview
+                        this._response = response;
 
                         var overviewMapDijit = new OverviewMap({
                             map: map,
@@ -391,7 +382,6 @@ define([
                         );
                         home.startup();
 
-
                         if (this.showDrawTools) {
                             var el = document.getElementsByClassName(
                                 "drawTools"
@@ -425,7 +415,7 @@ define([
                         // declared loaded after all asynchronous calls in post create have
                         // been initiated. this is especially important if the object
                         // is accessed in the update method
-                        
+
                         this.set("loaded", true);
 
                         function activateTool() {
@@ -444,9 +434,10 @@ define([
                             switch (evt.geometry.type) {
                                 case "point":
                                 case "multipoint":
-                                    
-                                    symbol = new SimpleMarkerSymbol().setColor(new Color("#FFFF00"));;
-                                 
+                                    symbol = new SimpleMarkerSymbol().setColor(
+                                        new Color("#FFFF00")
+                                    );
+
                                     break;
                                 case "polyline":
                                     symbol = new SimpleLineSymbol();
@@ -467,6 +458,61 @@ define([
             logger.debug(this.id + ".update");
 
             this._contextObj = obj;
+
+            if (this.initialZoomToGUID != "") {
+                // zoom if this is the first time here
+                if (this._firstRun) {
+                    this._firstRun = false;
+
+                    require(ArcGIS_Dojo_Loader_Config, [
+                        "esri/tasks/query",
+                        "esri/SpatialReference",
+                        "esri/layers/FeatureLayer",
+                        "esri/symbols/SimpleFillSymbol",
+                        "esri/symbols/SimpleLineSymbol",
+                        "esri/Color"
+                    ], dojo.hitch(this, function(
+                        Query,
+                        SpatialReference,
+                        FeatureLayer,
+                        SimpleFillSymbol,
+                        SimpleLineSymbol,
+                        Color
+                    ) {
+                        var query = new Query();
+                        query.where =
+                            "globalid = '" +
+                            this._contextObj.get(this.initialZoomToGUID) +
+                            "'";
+                        /*
+                    var fieldsSelectionSymbol = new SimpleFillSymbol(
+                        SimpleFillSymbol.STYLE_SOLID,
+                        new SimpleLineSymbol(
+                            SimpleLineSymbol.STYLE_DASHDOT,
+                            new Color([255, 0, 0]),
+                            2
+                        ),
+                        new Color([255, 255, 0, 0.5])
+                    );
+*/
+                        /*
+                    this._response.itemInfo.itemData.operationalLayers[0].layerObject.setSelectionSymbol(
+                        fieldsSelectionSymbol
+                    );
+  */
+                        this._response.itemInfo.itemData.operationalLayers[0].layerObject.selectFeatures(
+                            query,
+                            FeatureLayer.SELECTION_NEW,
+                            dojo.hitch(this, function(results) {
+                                this._map.centerAndZoom(
+                                    results[0].geometry,
+                                    this.minZoomDrawTools
+                                );
+                            })
+                        );
+                    }));
+                }
+            }
 
             this.editToolbar.on(
                 "graphic-move-stop",

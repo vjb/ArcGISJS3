@@ -14,6 +14,15 @@
             </attributeTypes>
         </property>
 
+         <property key="initialZoomToGUID" type="attribute">
+            <caption>Zoom To GUID</caption>
+            <category>Integration</category>
+            <description>If not empty, the map center and zoom on this GUID at startup</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+
         <property key="droppedLatitude" type="attribute">
             <caption>Latitude</caption>
             <category>Integration</category>
