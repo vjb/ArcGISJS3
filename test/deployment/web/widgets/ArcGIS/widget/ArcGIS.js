@@ -470,44 +470,57 @@ define([
                         "esri/layers/FeatureLayer",
                         "esri/symbols/SimpleFillSymbol",
                         "esri/symbols/SimpleLineSymbol",
-                        "esri/Color"
+                        "esri/symbols/SimpleMarkerSymbol",
+                        "esri/Color",
+                        "esri/symbols/PictureMarkerSymbol",
+                        "esri/graphic"
                     ], dojo.hitch(this, function(
                         Query,
                         SpatialReference,
                         FeatureLayer,
                         SimpleFillSymbol,
                         SimpleLineSymbol,
-                        Color
+                        SimpleMarkerSymbol,
+                        Color,
+                        PictureMarkerSymbol,
+                        Graphic
                     ) {
                         var query = new Query();
                         query.where =
                             "globalid = '" +
                             this._contextObj.get(this.initialZoomToGUID) +
                             "'";
-                        /*
-                    var fieldsSelectionSymbol = new SimpleFillSymbol(
-                        SimpleFillSymbol.STYLE_SOLID,
-                        new SimpleLineSymbol(
-                            SimpleLineSymbol.STYLE_DASHDOT,
-                            new Color([255, 0, 0]),
-                            2
-                        ),
-                        new Color([255, 255, 0, 0.5])
-                    );
-*/
-                        /*
-                    this._response.itemInfo.itemData.operationalLayers[0].layerObject.setSelectionSymbol(
-                        fieldsSelectionSymbol
-                    );
-  */
+                        
                         this._response.itemInfo.itemData.operationalLayers[0].layerObject.selectFeatures(
                             query,
                             FeatureLayer.SELECTION_NEW,
                             dojo.hitch(this, function(results) {
+                                
+                                var symbol = new SimpleMarkerSymbol({
+                                    color: [255, 255, 255, 0],
+                                    size: 12,
+                                    angle: 0,
+                                    xoffset: 0,
+                                    yoffset: 0,
+                                    type: "esriSMS",
+                                    style: "esriSMSCircle",
+                                    outline: {
+                                        color: [255, 255, 0, 255],
+                                        width: 5,
+                                        type: "esriSLS",
+                                        style: "esriSLSSolid"
+                                    }
+                                });
+
                                 this._map.centerAndZoom(
                                     results[0].geometry,
                                     this.minZoomDrawTools
                                 );
+
+
+                               // var pictureMarkerSymbol = new PictureMarkerSymbol('https://js.arcgis.com/3.28/esri/dijit/Search/images/search-pointer.png?636970991852588460', 51, 51);
+                                var graphic = new Graphic(results[0].geometry, symbol);
+                                this._map.graphics.add(graphic);
                             })
                         );
                     }));
@@ -734,10 +747,10 @@ define([
                                     xoffset: 0,
                                     yoffset: 0,
                                     type: "esriSMS",
-                                    style: "esriSMSSquare",
+                                    style: "esriSMSCircle",
                                     outline: {
-                                        color: [255, 0, 0, 255],
-                                        width: 2,
+                                        color: [255, 255, 0, 255],
+                                        width: 5,
                                         type: "esriSLS",
                                         style: "esriSLSSolid"
                                     }
