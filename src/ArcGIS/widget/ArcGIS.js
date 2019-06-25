@@ -490,12 +490,11 @@ define([
                             "globalid = '" +
                             this._contextObj.get(this.initialZoomToGUID) +
                             "'";
-                        
+
                         this._response.itemInfo.itemData.operationalLayers[0].layerObject.selectFeatures(
                             query,
                             FeatureLayer.SELECTION_NEW,
                             dojo.hitch(this, function(results) {
-                                
                                 var symbol = new SimpleMarkerSymbol({
                                     color: [255, 255, 255, 0],
                                     size: 12,
@@ -517,9 +516,11 @@ define([
                                     this.minZoomDrawTools
                                 );
 
-
-                               // var pictureMarkerSymbol = new PictureMarkerSymbol('https://js.arcgis.com/3.28/esri/dijit/Search/images/search-pointer.png?636970991852588460', 51, 51);
-                                var graphic = new Graphic(results[0].geometry, symbol);
+                                // var pictureMarkerSymbol = new PictureMarkerSymbol('https://js.arcgis.com/3.28/esri/dijit/Search/images/search-pointer.png?636970991852588460', 51, 51);
+                                var graphic = new Graphic(
+                                    results[0].geometry,
+                                    symbol
+                                );
                                 this._map.graphics.add(graphic);
                             })
                         );
