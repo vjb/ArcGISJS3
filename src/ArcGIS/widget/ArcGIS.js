@@ -85,6 +85,7 @@ define([
                 "esri/symbols/SimpleMarkerSymbol",
                 "esri/symbols/SimpleLineSymbol",
                 "esri/symbols/SimpleFillSymbol",
+                "esri/Color",
                 "esri/dijit/Measurement",
                 "esri/toolbars/edit",
                 "dojo/_base/event",
@@ -113,6 +114,7 @@ define([
                 SimpleMarkerSymbol,
                 SimpleLineSymbol,
                 SimpleFillSymbol,
+                Color,
                 Measurement,
                 Edit,
                 event,
@@ -140,9 +142,7 @@ define([
                         this._map = map;
                         this._response = response;
 
-                       
-
-                       /* firePerimeterFL.on("dbl-click", function(evt) {
+                        /* firePerimeterFL.on("dbl-click", function(evt) {
                             event.stop(evt);
                             if (editingEnabled === false) {
                               editingEnabled = true;
@@ -207,12 +207,12 @@ define([
                         var editToolbar = new Edit(map);
                         this.editToolbar = editToolbar;
 
-                         // asset layer 
-                         this._response.itemInfo.itemData.operationalLayers[0].layerObject.on(
+                        // asset layer
+                        this._response.itemInfo.itemData.operationalLayers[0].layerObject.on(
                             "dbl-click",
                             function(evt) {
-                               event.stop(evt);
-                               activateToolbar(evt.graphic);
+                                event.stop(evt);
+                                activateToolbar(evt.graphic);
                             }
                         );
 
@@ -439,7 +439,9 @@ define([
                             switch (evt.geometry.type) {
                                 case "point":
                                 case "multipoint":
-                                    symbol = new SimpleMarkerSymbol();
+                                    
+                                    symbol = new SimpleMarkerSymbol().setColor(new Color("#FFFF00"));;
+                                 
                                     break;
                                 case "polyline":
                                     symbol = new SimpleLineSymbol();
