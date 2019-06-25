@@ -23,6 +23,15 @@
             </attributeTypes>
         </property>
 
+         <property key="guidToObjectID" type="attribute">
+            <caption>ObjectID</caption>
+            <category>Integration</category>
+            <description>If not empty and "Zoom To GUID" is set, this attribute will be populated with the ObjectID as seen in GIS. USed for updates.</description>
+            <attributeTypes>
+                <attributeType name="Integer" />
+            </attributeTypes>
+        </property>
+
         <property key="droppedLatitude" type="attribute">
             <caption>Latitude</caption>
             <category>Integration</category>

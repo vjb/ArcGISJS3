@@ -32,7 +32,8 @@ public class MapController
 		Switch_ZoomToGlobalID("Switch_ZoomToGlobalID"),
 		bookmarksJSON("bookmarksJSON"),
 		DroppedLatitude("DroppedLatitude"),
-		DroppedLongitude("DroppedLongitude");
+		DroppedLongitude("DroppedLongitude"),
+		ObjectID("ObjectID");
 
 		private java.lang.String metaName;
 
@@ -585,6 +586,42 @@ public class MapController
 	public final void setDroppedLongitude(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String droppedlongitude)
 	{
 		getMendixObject().setValue(context, MemberNames.DroppedLongitude.toString(), droppedlongitude);
+	}
+
+	/**
+	 * @return value of ObjectID
+	 */
+	public final java.lang.Integer getObjectID()
+	{
+		return getObjectID(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of ObjectID
+	 */
+	public final java.lang.Integer getObjectID(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.Integer) getMendixObject().getValue(context, MemberNames.ObjectID.toString());
+	}
+
+	/**
+	 * Set value of ObjectID
+	 * @param objectid
+	 */
+	public final void setObjectID(java.lang.Integer objectid)
+	{
+		setObjectID(getContext(), objectid);
+	}
+
+	/**
+	 * Set value of ObjectID
+	 * @param context
+	 * @param objectid
+	 */
+	public final void setObjectID(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Integer objectid)
+	{
+		getMendixObject().setValue(context, MemberNames.ObjectID.toString(), objectid);
 	}
 
 	/**

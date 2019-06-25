@@ -4,5 +4,6 @@ deploy:
      [copy] Copying 46 files to C:\Users\vbe\temp\VJBGIS\test\deployment
 
 BUILD SUCCESSFUL
-Total time: 0 seconds
+Total time: 1 second
+
 

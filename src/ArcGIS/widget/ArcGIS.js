@@ -522,6 +522,11 @@ define([
                                     symbol
                                 );
                                 this._map.graphics.add(graphic);
+
+                                this._contextObj.set(
+                                    this.guidToObjectID,
+                                    results[0].attributes.objectid
+                                );
                             })
                         );
                     }));

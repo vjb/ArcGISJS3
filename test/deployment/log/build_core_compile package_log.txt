@@ -7,6 +7,6 @@ package:
       [jar] Building jar: C:\Users\vbe\temp\VJBGIS\test\deployment\model\bundles\project.jar
 
 BUILD SUCCESSFUL
-Total time: 3 seconds
+Total time: 2 seconds
 
 
