@@ -391,7 +391,6 @@ define([
                         );
                         home.startup();
 
-                        this.set("loaded", true);
 
                         if (this.showDrawTools) {
                             var el = document.getElementsByClassName(
@@ -422,6 +421,12 @@ define([
                                 el2.disabled = true;
                             }
                         }
+
+                        // declared loaded after all asynchronous calls in post create have
+                        // been initiated. this is especially important if the object
+                        // is accessed in the update method
+                        
+                        this.set("loaded", true);
 
                         function activateTool() {
                             var tool = this.textContent
