@@ -229,10 +229,11 @@ define([
                         //this.set("loaded", true);
 
                         //add the scalebar
-                        if (false) {
+                        if (true) {
                             var scalebar = new Scalebar({
                                 map: map,
-                                scalebarUnit: "english"
+                                scalebarUnit: "dual",
+                                attachTo : "bottom-left"
                             });
                         }
 
